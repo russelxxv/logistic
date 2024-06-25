@@ -2,7 +2,7 @@ services:
 
   # Laravel Application
   app:
-    image: logistic-app
+    image: oors-app
     build:
       dockerfile: docker/app.Dockerfile
     container_name: ${APP_CONTAINER}
@@ -15,10 +15,8 @@ services:
         source: ./
         target: /var/www/app-source/
     restart: unless-stopped
-    depends_on:
-      - db-test
     networks:
-      - logistic_network
+      - oors_network
 
   # Web Server Nginx
   nginx:
@@ -36,31 +34,10 @@ services:
     ports:
       - ${NGINX_EXPOSED_PORT}:80
     networks:
-      - logistic_network
+      - oors_network
     depends_on:
       - app
 
-  # DB Testing When (Assigned in .env.testing)
-  db-test:
-    image: mysql:8.1.0
-    container_name: ${DB_TEST_CONTAINER}
-    restart: unless-stopped
-    command: --default-authentication-plugin=mysql_native_password
-    ports:
-      - '6002:3306'
-    volumes:
-      - type: volume
-        source: logistic-db-test-volume
-        target: /var/lib/mysql
-    environment:
-      MYSQL_DATABASE: logistic_db
-      MYSQL_ROOT_PASSWORD: password
-    networks:
-      - logistic_network
-
 networks:
- logistic_network:
+ oors_network:
   driver: bridge
-
-volumes:
-  logistic-db-test-volume:
