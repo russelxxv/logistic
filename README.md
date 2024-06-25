@@ -1,7 +1,9 @@
 
-## Online Order Return System
+# Online Order Return System
 
-# Running local
+## This build is based on docker-composed. before running make sure you've install Docker Desktop, or docker engine and compose plugin
+
+## Running local
 - make dev-build-no-cache
 - make dev-up
 - composer install
