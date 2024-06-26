@@ -1,14 +1,28 @@
 
-# Online Order Return System
+# Online Returned Order System
 
-## This build is based on docker-composed. before running make sure you've install Docker Desktop, or docker engine and compose plugin
+## A project of someone
 
-## Running local
+# Prerequisite
+- Docker Desktop, Engine
+- Docker Compose Plugin
+- Installed Make GNU
+
+# Build and Run Local Development
+
+## Build Docker Images
 - make dev-build-no-cache
 - make dev-up
+
+## Install Composer, Migration and Seed Data
 - composer install
-- php artisan key:generate
-- php artisan migrate
-- php artisan db:seed
+- php artisan app:init
+
+## Build User Interface
 - npm i
 - npm build
+
+## Users ang Host
+- Link: `http://localhost:87` By default nginx is mapped to `port 87`
+- `username: super_admin@example.com`
+- `password: super_admin`
