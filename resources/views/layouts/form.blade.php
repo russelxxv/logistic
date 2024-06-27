@@ -31,4 +31,11 @@
             </main>
         </div>
     </body>
+
+    <script>
+        var app = app || {};
+    </script>
+    <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
+    <script src="{{ asset('assets/js/common.js') }}"></script>
+    @stack('scripts')
 </html>

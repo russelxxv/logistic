@@ -5,4 +5,5 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest')->prefix('/customer')->controller(CustomerController::class)->name('customer.')->group(function () {
     Route::get('create', 'create')->name('create');
+    Route::post('store', 'store')->name('store');
 });
