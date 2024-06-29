@@ -44,13 +44,24 @@ class CustomerRequest extends FormRequest
             'phone' => [
                 'required',
                 'unique:customers,phone',
-                (new PhoneRule())->country('US')->mobile(),
+                // 'phone:US'
+                // (new PhoneRule())->country('US')->type('fixed_line_or_mobile'),
             ],
             'email' => ['required', 'email', 'unique:customers,email'],
             'city_id' => ['required', 'exists:cities,id'],
             'state_id' => ['required', 'exists:states,id'],
             'postal_code' => ['required', new DbVarcharMaxLength()],
             'address_line' => ['required', 'string'],
+        ];
+    }
+
+    /**
+     * Custome error message
+     */
+    public function messages(): array
+    {
+        return [
+            'phone' => 'Phone number is invalid'
         ];
     }
 }
