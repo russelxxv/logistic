@@ -18,6 +18,8 @@ class DatabaseSeeder extends Seeder
             CountriesSeeder::class,
             StatesSeeder::class,
             CitiesSeeder::class,
+            ProductCategorySeeder::class,
+            ReturnReasonSeeder::class,
         ]);
 
     }

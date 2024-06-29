@@ -26,7 +26,7 @@ class ProjectInit extends Command
     public function handle(): int
     {
         $this->call('key:generate');
-        $this->call('migrate:refresh');
+        $this->call('migrate:fresh');
         $this->call('db:seed');
 
         return Command::SUCCESS;
