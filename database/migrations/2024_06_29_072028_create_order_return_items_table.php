@@ -15,11 +15,11 @@ return new class extends Migration
             $table->id();
             $table->string('item_no')->index();
             $table->unsignedBigInteger('order_return_id')->index();
-            $table->unsignedBigInteger('product_category_id')->index();
             $table->unsignedBigInteger('order_return_reason_id')->index();
-            $table->longText('details')->nullable();
+            $table->longText('details')->nullable()->comment('Other Special notes / Instructions');
             $table->timestamps();
             $table->softDeletes();
+            // $table->unsignedBigInteger('product_category_id')->index();
         });
     }
 

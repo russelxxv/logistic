@@ -15,3 +15,4 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 require __DIR__.'/customer.php';
+require __DIR__.'/order_return.php';

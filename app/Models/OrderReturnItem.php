@@ -46,4 +46,9 @@ class OrderReturnItem extends Model
     {
         return $this->hasOne(OrderReturnReason::class);
     }
+
+    /**
+     * 
+     * An item may have multiple product category
+     */
 }
