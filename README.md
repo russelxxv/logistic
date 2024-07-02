@@ -23,6 +23,6 @@
 - npm build
 
 ## Users ang Host
-- Link: `http://localhost:87` By default nginx is mapped to `port 87`
+- Link: `http://localhost:86` By default nginx is mapped to `port 86`
 - `username: super_admin@example.com`
 - `password: super_admin`
