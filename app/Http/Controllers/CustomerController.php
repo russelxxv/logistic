@@ -44,6 +44,8 @@ class CustomerController extends Controller
         ]);
 
         Session::flash('customer.created', 'Customer created');
-        return redirect()->back();
+        Session::put('customer', $customer);
+
+        return redirect()->route('order-return.index');
     }
 }

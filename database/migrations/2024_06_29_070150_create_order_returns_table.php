@@ -16,7 +16,6 @@ return new class extends Migration
             $table->string('order_number')->index();
             $table->unsignedBigInteger('customer_id')->index();
             $table->unsignedBigInteger('order_return_reason_id')->index();
-            $table->json('product_categories_id');
             $table->longText('details')->nullable()->comment('Other Special notes / Instructions');
             $table->timestamps();
             $table->softDeletes();

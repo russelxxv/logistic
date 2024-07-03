@@ -13,10 +13,10 @@ class ProductCategory extends Model
     protected $fillable = ['name'];
 
     /**
-     * A product category is belongs to a order return item
+     * A product category is belongs to a order return
      */
-    public function orderReturnItem(): BelongsTo
+    public function orderReturn(): BelongsTo
     {
-        return $this->belongsTo(OrderReturnItem::class);
+        return $this->belongsTo(OrderReturn::class);
     }
 }

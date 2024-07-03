@@ -10,6 +10,9 @@ class OrderReturnProductCategory extends Model
 {
     use HasFactory;
 
+    // Mass fillable
+    protected $fillable = ['product_category_id', 'order_return_id'];
+
     // eager load the relationship
     protected $with = ['orderReturn', 'productCategory'];
 

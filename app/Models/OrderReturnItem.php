@@ -13,11 +13,8 @@ class OrderReturnItem extends Model
     use HasFactory;
 
     protected $fillable = [
-        'item_no',
+        'item_number',
         'order_return_id',
-        'product_category_id',
-        'order_return_reason_id',
-        'details',
     ];
 
     /**

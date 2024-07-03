@@ -12,8 +12,10 @@ class OrderReturn extends Model
     use HasFactory;
 
     protected $fillable = [
-        'order_no',
+        'order_number',
         'customer_id',
+        'order_return_reason_id',
+        'details',
     ];
 
     // relations always load when fetching
