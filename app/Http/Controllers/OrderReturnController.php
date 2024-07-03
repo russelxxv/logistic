@@ -44,7 +44,7 @@ class OrderReturnController extends Controller
         
         Session::flash('order_return.created', 'Return Order Created');
 
-        return redirect()->back();
+        return redirect()->route('order-return.created');
     }
 
     public function created(): View

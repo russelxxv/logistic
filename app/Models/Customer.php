@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Address\Address;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -26,6 +27,9 @@ class Customer extends Model
     // pre-loaded relations when fetching
     protected $with = ['address', 'orderReturn'];
 
+    // custom attribute when fetching
+    protected $appends = ['full_name'];
+
     /**
      * A Customer may have multiple address
      */
@@ -40,5 +44,12 @@ class Customer extends Model
     public function orderReturn(): HasMany
     {
         return $this->hasMany(OrderReturn::class);
+    }
+
+    public function fullNameAttribute(): Attribute
+    {
+        return Attribute::make(function() {
+            return strtoupper($this->lastname .", ". $this->first_name);
+        });
     }
 }

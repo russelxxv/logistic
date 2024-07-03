@@ -1,11 +1,14 @@
 <?php
 
+use App\Http\Controllers\ManageOrderReturnController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/', [ManageOrderReturnController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
+
+// Route::middleware(['auth', 'verified'])->controller(ManageOrderReturnController::class)->name('manage-order-return.')->group(function() {
+//     Route::get('/', 'index')->name('index');
+// });
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

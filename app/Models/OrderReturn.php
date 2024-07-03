@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use Attribute;
+use Illuminate\Database\Eloquent\Casts\Attribute as CastsAttribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class OrderReturn extends Model
 {
@@ -19,7 +22,8 @@ class OrderReturn extends Model
     ];
 
     // relations always load when fetching
-    protected $with = ['returnItems', 'customer', 'productCategories'];
+    // protected $with = ['returnItems', 'customer', 'productCategories'];
+    protected $with = ['customer'];
 
     /**
      * order return is belong to a customer
@@ -43,5 +47,21 @@ class OrderReturn extends Model
     public function productCategories(): HasMany
     {
         return $this->hasMany(OrderReturnProductCategory::class);
+    }
+
+    /**
+     * An order is belongs to a reasoning 
+     */
+    public function reason(): BelongsTo
+    {
+        return $this->belongsTo(OrderReturnReason::class);
+    }
+
+    /**
+     * Cast attribute status
+     */
+    protected function status(): CastsAttribute
+    {
+        return CastsAttribute::get(fn ($value) => ucwords($value));
     }
 }
