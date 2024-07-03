@@ -11,6 +11,11 @@
         <div class="bg-red-100 border-l-4 border-red-500 text-orange-700 p-4" role="alert">
             <p class="font-bold">Form error</p>
             <p>Something invalid in your form.</p>
+            <ul>
+                @foreach ($errors->all() as $key => $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
         </div>
     @endif
 
@@ -24,155 +29,124 @@
         </div>
     @endsession
 
-    <form method="post" action="{{ route('customer.store', [], false) }}">
-        @csrf
-        <div class="space-y-12">
-            <div class="border-b border-gray-900/10 pb-12">
-
-                <ul id="nav-menu" class="mb-5 flex list-none flex-row flex-wrap border-b-0 ps-0" role="tablist"
-                    data-twe-nav-ref>
-                    <li role="presentation">
-                        <a href="#tabs-order-1"
-                            class="my-2 block border-x-0 border-b-2 border-t-0 border-transparent px-7 pb-3.5 pt-4 text-xs font-medium uppercase leading-tight text-neutral-500 hover:isolate hover:border-transparent hover:bg-neutral-100 focus:isolate focus:border-transparent data-[twe-nav-active]:border-primary data-[twe-nav-active]:text-primary dark:text-white/50 dark:hover:bg-neutral-700/60 dark:data-[twe-nav-active]:text-primary"
-                            data-twe-toggle="pill" data-twe-target="#tabs-order-1" data-twe-nav-active role="tab"
-                            aria-controls="tabs-order-1" aria-selected="true">Order 1</a>
-                    </li>
-                    <li>
-                        <a href="#" id="add-more-item"
-                            class="my-2 block border-x-0 border-b-2 border-t-0 border-transparent px-7 pb-3.5 pt-4 text-xs font-medium uppercase leading-tight text-neutral-500 hover:isolate hover:border-transparent hover:bg-neutral-100 focus:isolate focus:border-transparent data-[twe-nav-active]:border-primary data-[twe-nav-active]:text-primary dark:text-white/50 dark:hover:bg-neutral-700/60 dark:data-[twe-nav-active]:text-primary"
-                            aria-selected="false">+ Add Item</a>
-                    </li>
-                </ul>
-                <div class="mb-6 border border-gray-900/10">
-                    <div class="hidden p-5 opacity-100 transition-opacity duration-150 ease-linear data-[twe-tab-active]:block tab-order"
-                        id="tabs-order-1" role="tabpanel" aria-labelledby="tabs-order-1-tab" data-twe-tab-active>
-                        <div class="my-4 gap-x-4 gap-y-4 grid grid-cols-1">
-                            {{-- Start Order Number --}}
-                            <div class="sm:col-span-1 mb-2">
-                                <label for="order-number"
-                                    class="block text-sm font-medium leading-6 text-gray-900">Order
-                                    number <span class="text-red-500">*</span></label>
-                                <div class="mt-2 md:w-[50%] sm:w-[100%]">
-                                    <input type="text" name="order_number" id="order-number"
-                                        autocomplete="given-name" required
-                                        class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                        value="{{ old('order_number') }}">
-                                    <x-input-error class="mt-2" :messages="$errors->get('order_number')" />
+    <div class="space-y-4">
+        <form method="post" action="{{ route('order-return.store', [], false) }}" id="form-order-return">
+            @csrf
+            <div class="my-4 gap-x-4 gap-y-4 grid grid-cols-2">
+                {{-- Start Order Number --}}
+                <div class="sm:col-span-1 mb-2">
+                    <label for="order-number" class="block text-sm font-medium leading-6 text-gray-900">Order
+                        number <span class="text-red-500">*</span></label>
+                    <div class="mt-2">
+                        <input type="text" name="order_number" id="order-number" autocomplete="given-name" required
+                            class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                            value="{{ old('order_number') }}">
+                        <x-input-error class="mt-2" :messages="$errors->get('order_number')" />
+                    </div>
+                </div>
+                {{-- End Order Number --}}
+                {{-- Start Product Categories --}}
+                <div class="sm:col-span-2 mb-2">
+                    <label for="product-category" class="block text-sm font-medium leading-6 text-gray-900">Product
+                        Category<span class="text-red-500">*</span></label>
+                    <div class="mt-2">
+                        <x-input-error class="mt-2" :messages="$errors->get('product_category')" />
+                        <div class="grid grid-cols-3 gap-3">
+                            @foreach ($productCategories as $category)
+                                <div class="mb-[0.125rem] me-4 inline-block min-h-[1.5rem] ps-[1.5rem]">
+                                    <input
+                                        class="relative float-left -ms-[1.5rem] me-[6px] mt-[0.15rem] h-[1.125rem] w-[1.125rem] appearance-none rounded-[0.25rem] border-[0.125rem] border-solid border-secondary-500 outline-none before:pointer-events-none before:absolute before:h-[0.875rem] before:w-[0.875rem] before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:shadow-checkbox before:shadow-transparent before:content-[''] checked:border-primary checked:bg-primary checked:before:opacity-[0.16] checked:after:absolute checked:after:-mt-px checked:after:ms-[0.25rem] checked:after:block checked:after:h-[0.8125rem] checked:after:w-[0.375rem] checked:after:rotate-45 checked:after:border-[0.125rem] checked:after:border-l-0 checked:after:border-t-0 checked:after:border-solid checked:after:border-white checked:after:bg-transparent checked:after:content-[''] hover:cursor-pointer hover:before:opacity-[0.04] hover:before:shadow-black/60 focus:shadow-none focus:transition-[border-color_0.2s] focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-black/60 focus:before:transition-[box-shadow_0.2s,transform_0.2s] focus:after:absolute focus:after:z-[1] focus:after:block focus:after:h-[0.875rem] focus:after:w-[0.875rem] focus:after:rounded-[0.125rem] focus:after:content-[''] checked:focus:before:scale-100 checked:focus:before:shadow-checkbox checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] checked:focus:after:-mt-px checked:focus:after:ms-[0.25rem] checked:focus:after:h-[0.8125rem] checked:focus:after:w-[0.375rem] checked:focus:after:rotate-45 checked:focus:after:rounded-none checked:focus:after:border-[0.125rem] checked:focus:after:border-l-0 checked:focus:after:border-t-0 checked:focus:after:border-solid checked:focus:after:border-white checked:focus:after:bg-transparent rtl:float-right dark:border-neutral-400 dark:checked:border-primary dark:checked:bg-primary"
+                                        type="checkbox" id="{{ $category->name }}" name="product_category[]"
+                                        value="{{ $category->id }}" {{ old('product_category') && in_array($category->id, old('product_category')) ? 'checked' : '' }} />
+                                    <label class="text-sm inline-block ps-[0.15rem] hover:cursor-pointer text-gray-600"
+                                        for="{{ $category->name }}">{{ $category->name }}</label>
                                 </div>
-                            </div>
-                            {{-- End Order Number --}}
-                            {{-- Start Product Categories --}}
-                            <div class="sm:col-span-1 mb-2">
-                                <label for="product-category"
-                                    class="block text-sm font-medium leading-6 text-gray-900">Product Category<span
-                                        class="text-red-500">*</span></label>
-                                <div class="mt-2">
-                                    <div class="grid grid-cols-3 gap-3">
-                                        @foreach ($productCategory as $category)
-                                            <div class="mb-[0.125rem] me-4 inline-block min-h-[1.5rem] ps-[1.5rem]">
-                                                <input
-                                                    class="relative float-left -ms-[1.5rem] me-[6px] mt-[0.15rem] h-[1.125rem] w-[1.125rem] appearance-none rounded-[0.25rem] border-[0.125rem] border-solid border-secondary-500 outline-none before:pointer-events-none before:absolute before:h-[0.875rem] before:w-[0.875rem] before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:shadow-checkbox before:shadow-transparent before:content-[''] checked:border-primary checked:bg-primary checked:before:opacity-[0.16] checked:after:absolute checked:after:-mt-px checked:after:ms-[0.25rem] checked:after:block checked:after:h-[0.8125rem] checked:after:w-[0.375rem] checked:after:rotate-45 checked:after:border-[0.125rem] checked:after:border-l-0 checked:after:border-t-0 checked:after:border-solid checked:after:border-white checked:after:bg-transparent checked:after:content-[''] hover:cursor-pointer hover:before:opacity-[0.04] hover:before:shadow-black/60 focus:shadow-none focus:transition-[border-color_0.2s] focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-black/60 focus:before:transition-[box-shadow_0.2s,transform_0.2s] focus:after:absolute focus:after:z-[1] focus:after:block focus:after:h-[0.875rem] focus:after:w-[0.875rem] focus:after:rounded-[0.125rem] focus:after:content-[''] checked:focus:before:scale-100 checked:focus:before:shadow-checkbox checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] checked:focus:after:-mt-px checked:focus:after:ms-[0.25rem] checked:focus:after:h-[0.8125rem] checked:focus:after:w-[0.375rem] checked:focus:after:rotate-45 checked:focus:after:rounded-none checked:focus:after:border-[0.125rem] checked:focus:after:border-l-0 checked:focus:after:border-t-0 checked:focus:after:border-solid checked:focus:after:border-white checked:focus:after:bg-transparent rtl:float-right dark:border-neutral-400 dark:checked:border-primary dark:checked:bg-primary"
-                                                    type="checkbox" id="{{ $category->name }}" name="product_category[]"
-                                                    value="{{ $category->id }}" />
-                                                <label class="text-sm inline-block ps-[0.15rem] hover:cursor-pointer text-gray-600"
-                                                    for="{{ $category->name }}">{{ $category->name }}</label>
-                                            </div>
-                                        @endforeach
-                                    </div>
-                                </div>
-                            </div>
-                            {{-- End Product Categories --}}
-                            {{-- Start Items --}}
-                            <div class="sm:col-span-1 items-order" data-item_number="1">
-                                <label for="order-number"
-                                    class="block text-sm font-medium leading-6 text-gray-900">Item(s) <span class="text-red-500">*</span></label>
-                                <div class="relative flex md:w-[50%] sm:w-[100%] flex-wrap items-stretch">
-                                    <input type="text" name="item_number[]"
-                                        class="relative m-0 block flex-auto rounded-s border border-solid border-neutral-200 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-surface outline-none transition duration-200 ease-in-out placeholder:text-neutral-500 focus:z-[3] focus:border-primary focus:shadow-inset focus:outline-none motion-reduce:transition-none dark:border-white/10 dark:text-white dark:placeholder:text-neutral-200 dark:autofill:shadow-autofill dark:focus:border-primary"
-                                        placeholder="Item number" aria-describedby="item_number_1" />
-                                    {{-- <span
-                                        class="flex items-center whitespace-nowrap rounded-e border border-s-0 border-solid border-neutral-200 px-3 py-[0.25rem] text-center text-base font-normal leading-[1.6] text-surface dark:border-white/10 dark:text-white text-red-500 cursor-pointer"
-                                        id="item_number_1">x</span> --}}
-                                </div>
-                            </div>
-                            <div class="sm:col-span-1 -mt-2">
-                                <button type="button" id="btn-add-item"
-                                    class="text-end inline-block rounded pb-2 text-xs font-medium uppercase leading-normal text-primary hover:text-primary-600 focus:text-primary-600 focus:outline-none focus:ring-0 active:text-primary-700 motion-reduce:transition-none dark:text-secondary-600 dark:hover:text-secondary-500 dark:focus:text-secondary-500 dark:active:text-secondary-500">
-                                    + Add item
-                                </button>
-                            </div>
-                            {{-- End Items --}}
-                            {{-- Start Return Reason --}}
-                            <div class="sm:col-span-1">
-                                <label for="return-reason"
-                                    class="block text-sm font-medium leading-6 text-gray-900">Reason <span class="text-red-500">*</span></label>
-                                <div class="mt-2 md:w-[50%] sm:w-[100%]">
-                                    <select id="return-reason" name="return_reason_id" autocomplete="" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
-                                        <option value="nani">nani</option>
-                                    </select>
-                                </div>
-                            </div>
-                            {{-- End Return Reason --}}
+                            @endforeach
                         </div>
                     </div>
                 </div>
+                {{-- End Product Categories --}}
+                {{-- Start Items --}}
+                <div class="sm:col-span-1 item-container sm:col-start-1" data-item_number="1">
+                    <label for="order-number" class="block text-sm font-medium leading-6 text-gray-900">Item(s) number
+                        <span class="text-red-500">*</span></label>
+                    <div class="relative flex flex-wrap items-stretch">
+                        <input type="text" name="item_number[]"
+                            class="relative m-0 block flex-auto rounded-s border border-solid border-neutral-200 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-surface outline-none transition duration-200 ease-in-out placeholder:text-neutral-500 focus:z-[3] focus:border-primary focus:shadow-inset focus:outline-none motion-reduce:transition-none dark:border-white/10 dark:text-white dark:placeholder:text-neutral-200 dark:autofill:shadow-autofill dark:focus:border-primary"
+                            placeholder="Item number" aria-describedby="item_number_1" value="{{ old('item_number') ? old('item_number')[0] : '' }}" pattern="[0-9]*"/>
+                    </div>
+                </div>
+                <div class="sm:col-span-1 mt-7" id="div-add-item">
+                    <button type="button" id="btn-add-item"
+                        class="text-end inline-block rounded pb-2 text-xs font-medium uppercase leading-normal text-primary hover:text-primary-600 focus:text-primary-600 focus:outline-none focus:ring-0 active:text-primary-700 motion-reduce:transition-none dark:text-secondary-600 dark:hover:text-secondary-500 dark:focus:text-secondary-500 dark:active:text-secondary-500">
+                        + Add item
+                    </button>
+                </div>
+                {{-- End Items --}}
+                {{-- Start Return Reason --}}
+                <div class="sm:col-span-1 sm:col-start-1">
+                    <label for="return-reason" class="block text-sm font-medium leading-6 text-gray-900">Reason
+                        <span class="text-red-500">*</span></label>
+                    <div class="mt-2">
+                        <select id="return-reason" name="return_reason_id" required
+                            class="w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                            <option disabled selected>Select reason</option>
+                            @foreach ($reasons as $reason)
+                                <option value="{{ $reason->id }}">{{ $reason->reason }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                {{-- End Return Reason --}}
+                {{-- Start Notes / Special Description --}}
+                <div class="sm:col-span-2 sm:col-start-1">
+                    <label for="order-number" class="block text-sm font-medium leading-6 text-gray-900">Other
+                        Notes/Instructions</label>
+                    <div class="relative flex sm:w-full md:w-[75%] flex-wrap items-stretch">
+                        <textarea id="details" name="details" rows="4"
+                            class="shadow appearance-none border border-gray-400 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">{{ old('details') }}</textarea>
+                    </div>
+                </div>
+                {{-- /End Notes / Special Description --}}
 
-                <div class="mt-6 flex items-center justify-end gap-x-6">
+                <div class="mt-6 flex items-center gap-x-6">
                     <button type="submit"
                         class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Submit</button>
                 </div>
             </div>
-        </div>
-    </form>
+            {{-- End Grid cols --}}
+        </form>
+    </div>
+    {{-- End space div --}}
 
     @push('scripts')
         <script>
             $("#btn-add-item").click(function() {
-                const itemOrders = $(".items-order");
+                const itemOrders = $(".item-container");
                 const itemOrderLength = itemOrders.length
-                const targetElementAfter = $($(this).parents('.tab-order')).find(`div[data-item_number="1"]`)
+                const targetElementAfter = $("#form-order-return").find(`div[data-item_number="1"]`)
                 const idRandom = Math.floor((Math.random() * 100) + 1)
 
-                let itemContainer = `<div class="sm:col-span-1 -mt-2 item-container" data-item_number="${idRandom}">
-                                <div class="relative flex md:w-[50%] sm:w-[100%] flex-wrap items-stretch">
-                                    <input type="text" name="item_number[]"
-                                        class="relative m-0 block flex-auto rounded-s border border-solid border-neutral-200 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-surface outline-none transition duration-200 ease-in-out placeholder:text-neutral-500 focus:z-[3] focus:border-primary focus:shadow-inset focus:outline-none motion-reduce:transition-none dark:border-white/10 dark:text-white dark:placeholder:text-neutral-200 dark:autofill:shadow-autofill dark:focus:border-primary"
-                                        placeholder="Item number" aria-describedby="item_number_${idRandom}" />
-                                    <span
-                                        class="flex items-center whitespace-nowrap rounded-e border border-s-0 border-solid border-neutral-200 px-3 py-[0.25rem] text-center text-base font-normal leading-[1.6] text-surface dark:border-white/10 dark:text-white text-red-500 cursor-pointer"
-                                        id="item_number_${idRandom}" onclick="deleteItem(this)">x</span>
-                                </div>
-                            </div>`;
-
-                $(itemContainer).insertAfter(targetElementAfter);
+                let itemContainer = `
+                    <div class="sm:col-span-1 sm:col-start-1 item-container" data-item_number="${idRandom}">
+                        <div class="relative flex flex-wrap items-stretch">
+                            <input type="text" name="item_number[]"
+                                class="relative m-0 block flex-auto rounded-s border border-solid border-neutral-200 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-surface outline-none transition duration-200 ease-in-out placeholder:text-neutral-500 focus:z-[3] focus:border-primary focus:shadow-inset focus:outline-none motion-reduce:transition-none dark:border-white/10 dark:text-white dark:placeholder:text-neutral-200 dark:autofill:shadow-autofill dark:focus:border-primary"
+                                placeholder="Item number" aria-describedby="item_number_${idRandom}" />
+                            <span
+                                class="flex items-center whitespace-nowrap rounded-e border border-s-0 border-solid border-neutral-200 px-3 py-[0.25rem] text-center text-base font-normal leading-[1.6] text-surface dark:border-white/10 dark:text-white text-red-500 cursor-pointer"
+                                id="item_number_${idRandom}" onclick="deleteItem(this)">x</span>
+                        </div>
+                    </div>`;
+                $(itemContainer).insertAfter(itemOrders.length === 1 ? $("#div-add-item") : itemOrders.last());
+                $(`input[name="item_number[]"]`).mask('###############', {translation:  {'#': {pattern: /[0-9]/, optional: true}}});
             });
 
             function deleteItem(el) {
                 $($(el).parents('.item-container')).remove()
             }
-            /**
-                                                     * working but needs to finalize fields at the top
-                                                    $("#add-more-item").click(function() {
-                                                        let li = `
-                    <li role="presentation">
-                        <a href="#tabs-item-2"
-                            class="my-2 block border-x-0 border-b-2 border-t-0 border-transparent px-7 pb-3.5 pt-4 text-xs font-medium uppercase leading-tight text-neutral-500 hover:isolate hover:border-transparent hover:bg-neutral-100 focus:isolate focus:border-transparent data-[twe-nav-active]:border-primary data-[twe-nav-active]:text-primary dark:text-white/50 dark:hover:bg-neutral-700/60 dark:data-[twe-nav-active]:text-primary"
-                            data-twe-toggle="pill" data-twe-target="#tabs-item-2" data-twe-nav-active role="tab"
-                            aria-controls="tabs-item-2" aria-selected="true">Item 1</a>
-                    </li>`;
 
-                                                        $(li).insertBefore($($("#add-more-item").parents('li')))
-
-                                                        
-                                                        let tab = `
-                    <div class="hidden opacity-100 transition-opacity duration-150 ease-linear data-[twe-tab-active]:block"
-                        id="tabs-item-1" role="tabpanel" aria-labelledby="tabs-item-1-tab" data-twe-tab-active>
-                        Tab 1 content
-                    </div>
-                `;
-
-                                                    })
-                                                    */
+            $(`input[name="item_number[]"]`).mask('###############', {translation:  {'#': {pattern: /[0-9]/, optional: true}}});
         </script>
     @endpush
 </x-form-layout>

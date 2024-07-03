@@ -40,5 +40,6 @@
     <script src="https://cdn.jsdelivr.net/npm/tw-elements/js/tw-elements.umd.min.js"></script>
     <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/js/common.js') }}"></script>
+    <script src="{{ asset('assets/js/mask.js') }}"></script>
     @stack('scripts')
 </html>

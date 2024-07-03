@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\DbVarcharMaxLength;
 use Illuminate\Foundation\Http\FormRequest;
 
 class OrderReturnRequest extends FormRequest
@@ -32,7 +33,13 @@ class OrderReturnRequest extends FormRequest
     private function storeRules(): array
     {
         return [
-            //
+            'order_number' => ['required', 'string', new DbVarcharMaxLength()],
+            'product_category' => ['required', 'array'],
+            'product_category.*' => ['required', 'exists:product_categories,id'],
+            'item_number' => ['required', 'array'],
+            'item_number.*' => ['required', 'max_digits:15'],
+            'return_reason_id' => ['required', 'integer', 'exists:order_return_reasons,id'],
+            'details' => ['nullable', 'string'],
         ];
     }
 }

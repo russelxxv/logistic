@@ -20,9 +20,6 @@ class OrderReturnItem extends Model
         'details',
     ];
 
-    // pre-loaded relationship when fetching
-    protected $with = ['productCategory', 'orderReturnReason'];
-
     /**
      * An item is belongs to OrderReturn
      */
@@ -30,25 +27,4 @@ class OrderReturnItem extends Model
     {
         return $this->belongsTo(OrderReturn::class);
     }
-
-    /**
-     * An order item has only one product category 
-     */
-    public function productCategory(): HasOne
-    {
-        return $this->hasOne(ProductCategory::class);
-    }
-
-    /**
-     * An items has only 1 reason when returning the item
-     */
-    public function orderReturnReason(): HasOne
-    {
-        return $this->hasOne(OrderReturnReason::class);
-    }
-
-    /**
-     * 
-     * An item may have multiple product category
-     */
 }

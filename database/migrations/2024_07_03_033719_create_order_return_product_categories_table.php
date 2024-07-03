@@ -11,12 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('order_return_items', function (Blueprint $table) {
+        Schema::create('order_return_product_categories', function (Blueprint $table) {
             $table->id();
-            $table->string('item_number')->index();
+            $table->unsignedBigInteger('product_category_id')->index();
             $table->unsignedBigInteger('order_return_id')->index();
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
@@ -25,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('order_return_items');
+        Schema::dropIfExists('order_return_product_categories');
     }
 };

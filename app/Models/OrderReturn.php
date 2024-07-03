@@ -11,13 +11,13 @@ class OrderReturn extends Model
 {
     use HasFactory;
 
-    protected $fillaable = [
+    protected $fillable = [
         'order_no',
         'customer_id',
     ];
 
     // relations always load when fetching
-    protected $with = ['returnItems', 'customer'];
+    protected $with = ['returnItems', 'customer', 'productCategories'];
 
     /**
      * order return is belong to a customer
@@ -33,5 +33,13 @@ class OrderReturn extends Model
     public function returnItems(): HasMany
     {
         return $this->hasMany(OrderReturnItem::class);
+    }
+
+    /**
+     * An order return has multiple categories binded
+     */
+    public function productCategories(): HasMany
+    {
+        return $this->hasMany(OrderReturnProductCategory::class);
     }
 }
