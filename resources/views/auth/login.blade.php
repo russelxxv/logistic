@@ -8,26 +8,18 @@
 
             <div class="rounded-t mb-0 px-6 py-6">
                 <div class="text-center mb-3">
-                    <h6 class="text-blueGray-500 text-sm font-bold">
-                        Sign in with
+                    <h6 class="text-blueGray-500 text-sm font-bold uppercase">
+                        SIGN IN
                     </h6>
                 </div>
                 <div class="btn-wrapper text-center">
-                    <button
-                        class="bg-white active:bg-blueGray-50 text-blueGray-700 font-normal px-4 py-2 rounded outline-none focus:outline-none mr-2 mb-1 uppercase shadow hover:shadow-md inline-flex items-center font-bold text-xs ease-linear transition-all duration-150"
-                        type="button">
-                        <img alt="..." class="w-5 mr-1" src="../../assets/img/github.svg" />Github</button><button
-                        class="bg-white active:bg-blueGray-50 text-blueGray-700 font-normal px-4 py-2 rounded outline-none focus:outline-none mr-1 mb-1 uppercase shadow hover:shadow-md inline-flex items-center font-bold text-xs ease-linear transition-all duration-150"
-                        type="button">
-                        <img alt="..." class="w-5 mr-1" src="../../assets/img/google.svg" />Google
-                    </button>
+                    <h2 class="text-2xl leading-normal mt-0 mb-2 text-blueGray-600 font-bold">
+                        {{ config('app.name') }}
+                      </h2>
                 </div>
                 <hr class="mt-6 border-b-1 border-blueGray-300" />
             </div>
             <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
-                <div class="text-blueGray-400 text-center mb-3 font-bold">
-                    <small>Or sign in with credentials</small>
-                </div>
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
                     {{-- Email --}}
@@ -60,18 +52,6 @@
                     </div>
                 </form>
             </div>
-        </div>
-        <div class="flex flex-wrap mt-6">
-          <div class="w-1/2">
-            <a href="#pablo" class="text-blueGray-200"
-              ><small>Forgot password?</small></a
-            >
-          </div>
-          <div class="w-1/2 text-right">
-            <a href="./register.html" class="text-blueGray-200"
-              ><small>Create new account</small></a
-            >
-          </div>
         </div>
     </div>
 
