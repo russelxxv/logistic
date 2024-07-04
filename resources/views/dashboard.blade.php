@@ -1,42 +1,118 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Returned Order List') }}
-        </h2>
-    </x-slot>
-
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white shadow-sm sm:rounded-lg">
-                <div class="p-6 overflow-auto">
-                    <table id="example" class="display table table-border" style="width:100%">
+<x-admin-app-layout>
+    <div class="flex flex-wrap mt-4">
+        <div class="w-full mb-12 px-4">
+            <div class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded bg-white">
+                <div class="rounded-t mb-0 px-4 py-3 border-0">
+                    <div class="flex flex-wrap items-center">
+                        <div class="relative w-full px-4 max-w-full flex-grow flex-1">
+                            <h3 class="font-semibold text-lg text-blueGray-700">
+                                LIST
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="block w-full overflow-x-auto">
+                    <!-- Projects table -->
+                    <table class="items-center w-full bg-transparent border-collapse">
                         <thead>
                             <tr>
-                                <th>Order Number</th>
-                                <th>Name</th>
-                                <th>Company Name</th>
-                                <th>Phone No.</th>
-                                <th>Email</th>
-                                <th>Address</th>
-                                <th>Reason for return</th>
-                                <th>Date created</th>
-                                <th>Status</th>
-                                <th>Action</th>
+                                <th
+                                    class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">
+                                    Order Number
+                                </th>
+                                <th
+                                    class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">
+                                    Name
+                                </th>
+                                <th
+                                    class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">
+                                    Company Name
+                                </th>
+                                <th
+                                    class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">
+                                    Phone
+                                </th>
+                                <th
+                                    class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">
+                                    Email
+                                </th>
+                                <th
+                                    class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">
+                                    Address
+                                </th>
+                                <th
+                                    class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">
+                                    Reason for return
+                                </th>
+                                <th
+                                    class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">
+                                    Date Created
+                                </th>
+                                <th
+                                    class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">
+                                    Status
+                                </th>
+                                <th
+                                    class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($order_returns as $order)
                                 <tr>
-                                    <td>{{ $order->order_number }}</td>
-                                    <td>{{ $order->customer->full_name }}</td>
-                                    <td>Nothing follows</td>
-                                    <td>{{ $order->customer->phone }}</td>
-                                    <td>{{ $order->customer->email }}</td>
-                                    <td>complex</td>
-                                    <td>{{ $order->reason->reason }}</td>
-                                    <td>{{ $order->created_at }}</td>
-                                    <td>{{ $order->status }}</td>
-                                    <td>View</td>
+                                    <th
+                                        class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left flex items-center">
+                                        {{-- <img src="../../assets/img/bootstrap.jpg"
+                                            class="h-12 w-12 bg-white rounded-full border" alt="..." /> --}}
+                                        <span class="ml-3 font-bold text-blueGray-600">
+                                            {{ $order->order_number }}
+                                        </span>
+                                    </th>
+                                    <td
+                                        class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                        {{ $order->customer->full_name }}
+                                    </td>
+                                    <td
+                                        class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                        Nothing follows
+                                    </td>
+                                    <td
+                                        class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                        {{ $order->customer->phone }}
+                                    </td>
+                                    <td
+                                        class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                        {{ $order->customer->email }}
+                                    </td>
+                                    <td
+                                        class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                        address complex
+                                    </td>
+                                    <td
+                                        class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                        {{ $order->reason->reason }}
+                                    </td>
+                                    <td
+                                        class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                        {{ $order->created_at }}
+                                    </td>
+                                    <td
+                                        class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                        <i class="fas fa-circle text-emerald-500 mr-2"></i>
+                                        {{ $order->status }}
+                                    </td>
+                                    <td
+                                        class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-right">
+                                        <a href="#pablo" class="text-blueGray-500 block py-1 px-3"
+                                            onclick="openDropdown(event,'table-light-1-dropdown')">
+                                            <i class="fas fa-ellipsis-v"></i>
+                                        </a>
+                                        <div class="hidden bg-white text-base z-50 float-left py-2 list-none text-left rounded shadow-lg min-w-48"
+                                            id="table-light-1-dropdown">
+                                            <a href="#pablo"
+                                                class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700">View</a>
+                                        </div>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -45,8 +121,4 @@
             </div>
         </div>
     </div>
-
-    <script>
-        new DataTable('#example');
-    </script>
-</x-app-layout>
+</x-admin-app-layout>

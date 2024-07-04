@@ -8,15 +8,12 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>Login {{ config('app.name', 'OORS') }}</title>
-    <!-- Scripts -->
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
 
-    <!-- Fonts -->
-    {{-- <link rel="preconnect" href="https://fonts.bunny.net"> --}}
-    {{-- <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" /> --}}
+    <!-- Scripts vite -->
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <!-- notus theme -->
     <link rel="stylesheet" href="{{ asset('assets/vendor/@fortawesome/fontawesome-free/css/all.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/styles/tailwind.css') }}" />
-
 </head>
 
 <body class="text-blueGray-700 antialiased">
