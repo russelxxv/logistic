@@ -10,9 +10,8 @@ class ManageOrderReturnController extends Controller
 {
     public function index()
     {
-        dd(OrderReturn::all());
         return view('dashboard', [
-            'order_returns' => []
+            'order_returns' => OrderReturn::all()
         ]);
     }
 }

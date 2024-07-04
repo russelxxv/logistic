@@ -14,9 +14,9 @@ return new class extends Migration
     {
         Schema::create('order_returns', function (Blueprint $table) {
             $table->id();
-            $table->string('order_number')->index();
-            $table->unsignedBigInteger('customer_id')->index();
-            $table->unsignedBigInteger('order_return_reason_id')->index();
+            $table->string('order_number');
+            $table->unsignedBigInteger('customer_id');
+            $table->unsignedBigInteger('order_return_reason_id');
             $table->longText('details')->nullable()->comment('Other Special notes / Instructions');
             $table->enum('status', [ReturnOrderStatus::NEW->value, ReturnOrderStatus::RECEIVED->value]);
             $table->timestamps();

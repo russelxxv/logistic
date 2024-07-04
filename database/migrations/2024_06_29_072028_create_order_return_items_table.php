@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('order_return_items', function (Blueprint $table) {
             $table->id();
-            $table->string('item_number')->index();
-            $table->unsignedBigInteger('order_return_id')->index();
+            $table->string('item_number');
+            $table->unsignedBigInteger('order_return_id');
             $table->timestamps();
             $table->softDeletes();
         });

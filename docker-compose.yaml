@@ -15,8 +15,6 @@ services:
         source: ./
         target: /var/www/app-source/
     restart: unless-stopped
-    ports:
-      - 5173:5173
     networks:
       - oors_network
 

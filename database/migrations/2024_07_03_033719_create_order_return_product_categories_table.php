@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('order_return_product_categories', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('product_category_id')->index();
-            $table->unsignedBigInteger('order_return_id')->index();
+            $table->unsignedBigInteger('product_category_id');
+            $table->unsignedBigInteger('order_return_id');
             $table->timestamps();
         });
     }

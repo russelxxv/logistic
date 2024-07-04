@@ -22,10 +22,10 @@ class Customer extends Model
     ];
 
     // hidden attribute when fetch thru apis
-    protected $hidden = ['id', 'customer_id', 'deleted_at', 'created_at', 'updated_at'];
+    protected $hidden = ['deleted_at', 'created_at', 'updated_at'];
 
     // pre-loaded relations when fetching
-    protected $with = ['address', 'orderReturn'];
+    protected $with = ['address'];
 
     // custom attribute when fetching
     protected $appends = ['full_name'];
@@ -46,10 +46,10 @@ class Customer extends Model
         return $this->hasMany(OrderReturn::class);
     }
 
-    public function fullNameAttribute(): Attribute
+    public function fullName(): Attribute
     {
         return Attribute::make(function() {
-            return strtoupper($this->lastname .", ". $this->first_name);
+            return ucwords($this->last_name .", ". $this->first_name);
         });
     }
 }

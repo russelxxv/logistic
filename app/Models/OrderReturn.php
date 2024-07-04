@@ -23,7 +23,7 @@ class OrderReturn extends Model
 
     // relations always load when fetching
     // protected $with = ['returnItems', 'customer', 'productCategories'];
-    protected $with = ['customer'];
+    protected $with = ['returnItems', 'reason', 'customer'];
 
     /**
      * order return is belong to a customer
@@ -54,7 +54,7 @@ class OrderReturn extends Model
      */
     public function reason(): BelongsTo
     {
-        return $this->belongsTo(OrderReturnReason::class);
+        return $this->belongsTo(OrderReturnReason::class, 'order_return_reason_id', 'id');
     }
 
     /**

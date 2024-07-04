@@ -57,7 +57,8 @@
                                     <input
                                         class="relative float-left -ms-[1.5rem] me-[6px] mt-[0.15rem] h-[1.125rem] w-[1.125rem] appearance-none rounded-[0.25rem] border-[0.125rem] border-solid border-secondary-500 outline-none before:pointer-events-none before:absolute before:h-[0.875rem] before:w-[0.875rem] before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:shadow-checkbox before:shadow-transparent before:content-[''] checked:border-primary checked:bg-primary checked:before:opacity-[0.16] checked:after:absolute checked:after:-mt-px checked:after:ms-[0.25rem] checked:after:block checked:after:h-[0.8125rem] checked:after:w-[0.375rem] checked:after:rotate-45 checked:after:border-[0.125rem] checked:after:border-l-0 checked:after:border-t-0 checked:after:border-solid checked:after:border-white checked:after:bg-transparent checked:after:content-[''] hover:cursor-pointer hover:before:opacity-[0.04] hover:before:shadow-black/60 focus:shadow-none focus:transition-[border-color_0.2s] focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-black/60 focus:before:transition-[box-shadow_0.2s,transform_0.2s] focus:after:absolute focus:after:z-[1] focus:after:block focus:after:h-[0.875rem] focus:after:w-[0.875rem] focus:after:rounded-[0.125rem] focus:after:content-[''] checked:focus:before:scale-100 checked:focus:before:shadow-checkbox checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] checked:focus:after:-mt-px checked:focus:after:ms-[0.25rem] checked:focus:after:h-[0.8125rem] checked:focus:after:w-[0.375rem] checked:focus:after:rotate-45 checked:focus:after:rounded-none checked:focus:after:border-[0.125rem] checked:focus:after:border-l-0 checked:focus:after:border-t-0 checked:focus:after:border-solid checked:focus:after:border-white checked:focus:after:bg-transparent rtl:float-right dark:border-neutral-400 dark:checked:border-primary dark:checked:bg-primary"
                                         type="checkbox" id="{{ $category->name }}" name="product_category[]"
-                                        value="{{ $category->id }}" {{ old('product_category') && in_array($category->id, old('product_category')) ? 'checked' : '' }} />
+                                        value="{{ $category->id }}"
+                                        {{ old('product_category') && in_array($category->id, old('product_category')) ? 'checked' : '' }} />
                                     <label class="text-sm inline-block ps-[0.15rem] hover:cursor-pointer text-gray-600"
                                         for="{{ $category->name }}">{{ $category->name }}</label>
                                 </div>
@@ -73,7 +74,8 @@
                     <div class="relative flex flex-wrap items-stretch">
                         <input type="text" name="item_number[]"
                             class="relative m-0 block flex-auto rounded-s border border-solid border-neutral-200 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-surface outline-none transition duration-200 ease-in-out placeholder:text-neutral-500 focus:z-[3] focus:border-primary focus:shadow-inset focus:outline-none motion-reduce:transition-none dark:border-white/10 dark:text-white dark:placeholder:text-neutral-200 dark:autofill:shadow-autofill dark:focus:border-primary"
-                            placeholder="Item number" aria-describedby="item_number_1" value="{{ old('item_number') ? old('item_number')[0] : '' }}" pattern="[0-9]*"/>
+                            placeholder="Item number" aria-describedby="item_number_1"
+                            value="{{ old('item_number') ? old('item_number')[0] : '' }}" pattern="[0-9]*" />
                     </div>
                 </div>
                 <div class="sm:col-span-1 mt-7" id="div-add-item">
@@ -112,6 +114,9 @@
                 <div class="mt-6 flex items-center gap-x-6">
                     <button type="submit"
                         class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Submit</button>
+
+                    <a href="{{ route('order-return.close') }}"
+                        class="rounded-md bg-gray-300 px-3 py-2 text-sm font-semibold text-dark shadow-sm hover:bg-gray-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Cancel</a>
                 </div>
             </div>
             {{-- End Grid cols --}}
@@ -139,14 +144,28 @@
                         </div>
                     </div>`;
                 $(itemContainer).insertAfter(itemOrders.length === 1 ? $("#div-add-item") : itemOrders.last());
-                $(`input[name="item_number[]"]`).mask('###############', {translation:  {'#': {pattern: /[0-9]/, optional: true}}});
+                $(`input[name="item_number[]"]`).mask('###############', {
+                    translation: {
+                        '#': {
+                            pattern: /[0-9]/,
+                            optional: true
+                        }
+                    }
+                });
             });
 
             function deleteItem(el) {
                 $($(el).parents('.item-container')).remove()
             }
 
-            $(`input[name="item_number[]"]`).mask('###############', {translation:  {'#': {pattern: /[0-9]/, optional: true}}});
+            $(`input[name="item_number[]"]`).mask('###############', {
+                translation: {
+                    '#': {
+                        pattern: /[0-9]/,
+                        optional: true
+                    }
+                }
+            });
         </script>
     @endpush
 </x-form-layout>
