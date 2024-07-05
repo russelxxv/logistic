@@ -5,7 +5,7 @@
         </h2>
     </x-slot>
 
-    <h2 class="text-xl font-semibold leading-7 text-gray-900 mb-10 text-center">Customer Details / Retailer</h2>
+    <h2 class="text-xl font-semibold leading-7 text-gray-900 mb-10 text-center">Customer Details</h2>
 
     @if ($errors->any())
         <div class="bg-red-100 border-l-4 border-red-500 text-orange-700 p-4" role="alert">

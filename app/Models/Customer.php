@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Customer extends Model
 {
@@ -28,14 +29,14 @@ class Customer extends Model
     protected $with = ['address'];
 
     // custom attribute when fetching
-    protected $appends = ['full_name'];
+    protected $appends = ['full_name', 'addressCityStateCountry'];
 
     /**
      * A Customer may have multiple address
      */
-    public function address(): HasMany
+    public function address(): HasOne
     {
-        return $this->hasMany(Address::class);
+        return $this->hasOne(Address::class);
     }
 
     /**
@@ -50,6 +51,20 @@ class Customer extends Model
     {
         return Attribute::make(function() {
             return ucwords($this->last_name .", ". $this->first_name);
+        });
+    }
+
+    /**
+     * Attribute Address for Listview displaying only
+     */
+    public function addressCityStateCountry(): Attribute
+    {
+        return Attribute::make(function() {
+            $city = $this->address->city->name;
+            $state = $this->address->state->name;
+            $country = $this->address->country->name;
+
+            return "$state, $city, $country";
         });
     }
 }

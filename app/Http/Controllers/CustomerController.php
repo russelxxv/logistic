@@ -41,6 +41,7 @@ class CustomerController extends Controller
             'state_id' => $data['state_id'],
             'postal_code' => $data['postal_code'],
             'address_line' => $data['address_line'],
+            'country_id' => $data['country'],
         ]);
 
         Session::flash('customer.created', 'Customer created');
