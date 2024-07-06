@@ -131,7 +131,7 @@
                         class="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
                         More Pages
                     </h6>
-                    
+
                 </div>
             </div>
         </nav>
@@ -155,8 +155,7 @@
                         </div>
                     </form>
                     <ul class="flex-col md:flex-row list-none items-center hidden md:flex">
-                        <a class="text-blueGray-500 block" href="#pablo"
-                            onclick="openDropdown(event,'user-dropdown')">
+                        <a class="text-blueGray-500 block" href="#pablo" onclick="openDropdown(event,'user-dropdown')">
                             <div class="items-center flex">
                                 <span
                                     class="w-12 h-12 text-sm text-white bg-blueGray-200 inline-flex items-center justify-center rounded-full"><img
@@ -172,9 +171,9 @@
                             <!-- Authentication -->
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
-                                <a href="#" class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
-                                    onclick="event.preventDefault(); this.closest('form').submit();"
-                                    >Logout</a>
+                                <a href="#"
+                                    class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
+                                    onclick="event.preventDefault(); this.closest('form').submit();">Logout</a>
                             </form>
                         </div>
                     </ul>
@@ -185,131 +184,9 @@
             <!-- start header and charts -->
             <div class="relative bg-amber-600 md:pt-32 pb-32 pt-12">
                 <div class="px-4 md:px-10 mx-auto w-full">
-                    <div>
-                        <!-- Card stats -->
-                        <div class="flex flex-wrap">
-                            <div class="w-full lg:w-6/12 xl:w-3/12 px-4">
-                                <div
-                                    class="relative flex flex-col min-w-0 break-words bg-white rounded mb-6 xl:mb-0 shadow-lg">
-                                    <div class="flex-auto p-4">
-                                        <div class="flex flex-wrap">
-                                            <div class="relative w-full pr-4 max-w-full flex-grow flex-1">
-                                                <h5 class="text-blueGray-400 uppercase font-bold text-xs">
-                                                    Customer
-                                                </h5>
-                                                <span class="font-semibold text-xl text-blueGray-700">
-                                                    100
-                                                </span>
-                                            </div>
-                                            <div class="relative w-auto pl-4 flex-initial">
-                                                <div
-                                                    class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 shadow-lg rounded-full bg-red-500">
-                                                    <i class="fas fa-users"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <p class="text-sm text-blueGray-400 mt-4">
-                                            <span class="text-emerald-500 mr-2">
-                                                <i class="fas fa-arrow-up"></i> 5
-                                            </span>
-                                            <span class="whitespace-nowrap">
-                                                Since last month
-                                            </span>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="w-full lg:w-6/12 xl:w-3/12 px-4">
-                                <div
-                                    class="relative flex flex-col min-w-0 break-words bg-white rounded mb-6 xl:mb-0 shadow-lg">
-                                    <div class="flex-auto p-4">
-                                        <div class="flex flex-wrap">
-                                            <div class="relative w-full pr-4 max-w-full flex-grow flex-1">
-                                                <h5 class="text-blueGray-400 uppercase font-bold text-xs">
-                                                    New Return
-                                                </h5>
-                                                <span class="font-semibold text-xl text-blueGray-700">
-                                                    200
-                                                </span>
-                                            </div>
-                                            <div class="relative w-auto pl-4 flex-initial">
-                                                <div
-                                                    class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 shadow-lg rounded-full bg-orange-500">
-                                                    <i class="fas fa-chart-pie"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <p class="text-sm text-blueGray-400 mt-4">
-                                            <span class="text-red-500 mr-2">
-                                                <i class="fas fa-arrow-down"></i> 3.48%
-                                            </span>
-                                            <span class="whitespace-nowrap"> Since last week </span>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="w-full lg:w-6/12 xl:w-3/12 px-4">
-                                <div
-                                    class="relative flex flex-col min-w-0 break-words bg-white rounded mb-6 xl:mb-0 shadow-lg">
-                                    <div class="flex-auto p-4">
-                                        <div class="flex flex-wrap">
-                                            <div class="relative w-full pr-4 max-w-full flex-grow flex-1">
-                                                <h5 class="text-blueGray-400 uppercase font-bold text-xs">
-                                                    Received
-                                                </h5>
-                                                <span class="font-semibold text-xl text-blueGray-700">
-                                                    250
-                                                </span>
-                                            </div>
-                                            <div class="relative w-auto pl-4 flex-initial">
-                                                <div
-                                                    class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 shadow-lg rounded-full bg-amber-500">
-                                                    <i class="fas fa-check-circle"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <p class="text-sm text-blueGray-400 mt-4">
-                                            <span class="text-orange-500 mr-2">
-                                                <i class="fas fa-arrow-down"></i> 1.10%
-                                            </span>
-                                            <span class="whitespace-nowrap"> Since yesterday </span>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="w-full lg:w-6/12 xl:w-3/12 px-4">
-                                <div
-                                    class="relative flex flex-col min-w-0 break-words bg-white rounded mb-6 xl:mb-0 shadow-lg">
-                                    <div class="flex-auto p-4">
-                                        <div class="flex flex-wrap">
-                                            <div class="relative w-full pr-4 max-w-full flex-grow flex-1">
-                                                <h5 class="text-blueGray-400 uppercase font-bold text-xs">
-                                                    Total Return
-                                                </h5>
-                                                <span class="font-semibold text-xl text-blueGray-700">
-                                                    450
-                                                </span>
-                                            </div>
-                                            <div class="relative w-auto pl-4 flex-initial">
-                                                <div
-                                                    class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 shadow-lg rounded-full bg-lightBlue-500">
-                                                    <i class="fas fa-percent"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <p class="text-sm text-blueGray-400 mt-4">
-                                            <span class="text-emerald-500 mr-2">
-                                                <i class="fas fa-arrow-up"></i> 11%
-                                            </span>
-                                            <span class="whitespace-nowrap">
-                                                Since last month
-                                            </span>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @isset($card_status)
+                        {{ $card_status }}
+                    @endisset
                 </div>
             </div>
             <!-- end header and charts -->
@@ -336,6 +213,7 @@
     </div>
 </body>
 <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.js"></script>
+<script src="{{ asset('assets/js/jquery.min.js') }}"></script>
 <script type="text/javascript">
     /* Make dynamic date appear */
     (function() {
@@ -365,5 +243,6 @@
         document.getElementById(dropdownID).classList.toggle("block");
     }
 </script>
+@stack('script')
 
 </html>

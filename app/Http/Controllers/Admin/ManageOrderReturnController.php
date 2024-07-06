@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Models\OrderReturn;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use App\Http\Controllers\Controller;
 
 class ManageOrderReturnController extends Controller
 {
@@ -12,6 +13,13 @@ class ManageOrderReturnController extends Controller
     {
         return view('dashboard', [
             'order_returns' => OrderReturn::all()
+        ]);
+    }
+    
+    public function edit($id): View
+    {
+        return view('edit', [
+            'order_return' => OrderReturn::findOrFail($id),
         ]);
     }
 }
