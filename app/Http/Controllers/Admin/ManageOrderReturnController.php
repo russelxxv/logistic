@@ -6,6 +6,9 @@ use App\Models\OrderReturn;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use App\Http\Controllers\Controller;
+use App\Models\Address\City;
+use App\Models\Address\Country;
+use App\Models\Address\State;
 
 class ManageOrderReturnController extends Controller
 {
@@ -20,6 +23,9 @@ class ManageOrderReturnController extends Controller
     {
         return view('edit', [
             'order_return' => OrderReturn::findOrFail($id),
+            'countries' => Country::all(),
+            'states' => State::all(),
+            'cities' => City::all(),
         ]);
     }
 }

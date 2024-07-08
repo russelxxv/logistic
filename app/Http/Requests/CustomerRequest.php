@@ -52,6 +52,7 @@ class CustomerRequest extends FormRequest
             'state_id' => ['required', 'exists:states,id'],
             'postal_code' => ['required', new DbVarcharMaxLength()],
             'address_line' => ['required', 'string'],
+            'country' => ['required', 'exists:countries,id']
         ];
     }
 

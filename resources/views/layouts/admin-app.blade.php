@@ -212,9 +212,11 @@
         <!-- end right content -->
     </div>
 </body>
-<script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.js"></script>
+<script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.js" charset="utf-8"></script>
 <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
+<script src="{{ asset('assets/js/mask.js') }}"></script>
 <script type="text/javascript">
+    var app = app || {};
     /* Make dynamic date appear */
     (function() {
         if (document.getElementById("get-current-year")) {
@@ -243,6 +245,7 @@
         document.getElementById(dropdownID).classList.toggle("block");
     }
 </script>
+<script src="{{ asset('assets/js/common.js') }}"></script>
 @stack('script')
 
 </html>
