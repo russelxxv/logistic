@@ -152,7 +152,7 @@
                     </div>
                     <div class="sm:col-span-2 hidden" id="div-retailer">
                         <label for="retailer-name" class="block text-sm font-medium leading-6 text-gray-900">Retailer
-                            name</label>
+                            name <span class="text-red-500">*</span></label>
                         <div class="mt-2">
                             <input type="text" name="retailer_name" id="retailer-name"
                                 autocomplete="retailer-name"

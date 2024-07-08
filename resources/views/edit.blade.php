@@ -39,9 +39,9 @@
                                 <div class="relative w-full mb-3">
                                     <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                                         for="first_name">
-                                        First Name
+                                        First Name <span class="text-red-500">*</span>
                                     </label>
-                                    <input type="text"
+                                    <input type="text" required
                                         class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                         value="{{ $order_return->customer->first_name }}" name="first_name"
                                         id="first_name" />
@@ -52,9 +52,9 @@
                                 <div class="relative w-full mb-3">
                                     <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                                         for="last_name">
-                                        Last Name
+                                        Last Name <span class="text-red-500">*</span>
                                     </label>
-                                    <input type="text"
+                                    <input type="text" required
                                         class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                         name="last_name" id="last_name"
                                         value="{{ $order_return->customer->last_name }}" />
@@ -78,9 +78,9 @@
                                 <div class="relative w-full mb-3">
                                     <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                                         for="email">
-                                        Email address
+                                        Email address <span class="text-red-500">*</span>
                                     </label>
-                                    <input type="email"
+                                    <input type="email" required
                                         class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                         value="{{ $order_return->customer->email }}" name="email" id="email" />
                                     <x-input-error class="mt-2" :messages="$errors->get('email')" />
@@ -92,7 +92,7 @@
                                         for="phone">
                                         Phone
                                     </label>
-                                    <input type="text"
+                                    <input type="text" required
                                         class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                         value="{{ $order_return->customer->phone }}" name="phone" id="phone" />
                                     <x-input-error class="mt-2" :messages="$errors->get('phone')" />
@@ -102,7 +102,7 @@
                                 <div class="relative w-full mb-3">
                                     <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                                         for="retailer_name">
-                                        Retailer name
+                                        Retailer name <span class="italic lowercase text-xs">(leave blank if not applicable)</span>
                                     </label>
                                     <input type="text"
                                         class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
@@ -151,7 +151,7 @@
                                         for="address_line">
                                         Address
                                     </label>
-                                    <input type="text" name="address_line"
+                                    <input type="text" name="address_line" required
                                         class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                         value="{{ $order_return->customer->address->address_line }}" />
                                     <x-input-error class="mt-2" :messages="$errors->get('address_line')" />
@@ -216,7 +216,7 @@
                                         for="postal_code">
                                         Postal Code
                                     </label>
-                                    <input type="text" id="postal_code" name="postal_code"
+                                    <input type="text" id="postal_code" name="postal_code" required
                                         class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                         value="{{ $order_return->customer->address->postal_code }}" />
                                 </div>
@@ -235,9 +235,9 @@
                     <hr class="mt-6 border-b-1 border-blueGray-300" />
 
                     <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
-                        About Me
+                        Order Return Details
                     </h6>
-                    <div class="flex flex-wrap">
+                    {{-- <div class="flex flex-wrap">
                         <div class="w-full lg:w-12/12 px-4">
                             <div class="relative w-full mb-3">
                                 <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
@@ -252,7 +252,7 @@
                             </textarea>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>
