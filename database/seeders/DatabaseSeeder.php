@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             CitiesSeeder::class,
             ProductCategorySeeder::class,
             ReturnReasonSeeder::class,
+            OrderReturnSeeder::class,
         ]);
 
     }

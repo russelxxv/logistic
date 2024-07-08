@@ -60,9 +60,9 @@ class Customer extends Model
     public function addressCityStateCountry(): Attribute
     {
         return Attribute::make(function() {
-            $city = $this->address->city->name;
-            $state = $this->address->state->name;
-            $country = $this->address->country->name;
+            $city = $this->address->city->name ?? '';
+            $state = $this->address->state->name ?? '';
+            $country = $this->address->country->name ?? '';
 
             return "$state, $city, $country";
         });
