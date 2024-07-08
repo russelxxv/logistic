@@ -16,7 +16,6 @@ class ManageOrderReturnController extends Controller
     public function index()
     {
         $paginate = OrderReturn::paginate(10);
-        // dd($paginate->links());
         
         return view('dashboard', [
             'order_returns' => $paginate,
