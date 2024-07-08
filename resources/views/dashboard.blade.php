@@ -1,8 +1,8 @@
 <x-admin-app-layout>
 
-    {{--Card statuses --}}
+    {{-- Card statuses --}}
     <x-slot name="card_status">
-        <x-admin.card-status/>
+        <x-admin.card-status />
     </x-slot>
 
     <div class="flex flex-wrap mt-4">
@@ -14,6 +14,13 @@
                             <h3 class="font-semibold text-lg text-blueGray-700">
                                 LIST
                             </h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="rounded-t mb-0 px-4 py-3 border-0">
+                    <div class="flex flex-wrap items-center">
+                        <div class="relative w-full px-4 max-w-full flex-grow flex-1">
+                            Filters
                         </div>
                     </div>
                 </div>
@@ -61,6 +68,69 @@
                                 <th
                                     class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">
                                     Status
+                                </th>
+                            </tr>
+                            <tr>
+                                <th
+                                    class="align-middle border border-solid text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-center bg-blueGray-50 text-blueGray-500 border-blueGray-100">
+                                    <button
+                                        class="bg-amber-500 text-white active:bg-amber-400 hover:bg-amber-400 font-bold uppercase text-xs p-2 rounded-full shadow hover:shadow-md outline-none focus:outline-none ease-linear transition-all duration-150"
+                                        type="button">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </th>
+                                <th
+                                    class="px-3 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">
+                                    {{-- <input type="text"
+                                        class="border-0 py-2 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                        value="" placeholder="search" /> --}}
+                                </th>
+                                <th
+                                    class="px-3 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">
+                                    {{-- <input type="text"
+                                        class="border-0 py-2 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                        value="" placeholder="search" /> --}}
+                                </th>
+                                <th
+                                    class="px-3 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">
+                                    {{-- <input type="text"
+                                        class="border-0 py-2 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                        value="" placeholder="search" /> --}}
+                                </th>
+                                <th
+                                    class="px-3 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">
+                                    <input type="text"
+                                        class="border-0 border-amber-400 py-2 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring ring-amber-400 w-full ease-linear transition-all duration-150"
+                                        value="" placeholder="Phone" />
+                                </th>
+                                <th
+                                    class="px-3 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">
+                                    {{-- <input type="text"
+                                        class="border-0 py-2 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                        value="" placeholder="search" /> --}}
+                                </th>
+                                <th
+                                    class="px-3 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">
+                                    {{-- <input type="text"
+                                        class="border-0 py-2 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                        value="" placeholder="search" /> --}}
+                                </th>
+                                <th
+                                    class="px-3 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">
+                                    {{-- <input type="text"
+                                        class="border-0 py-2 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                        value="" placeholder="search" /> --}}
+                                </th>
+                                <th
+                                    class="px-3 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">
+                                </th>
+                                <th
+                                    class="align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">
+                                    <select id="city" name="city" required
+                                        class="block w-full rounded-md border-0 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-amber-600">
+                                        <option value="{{ $statuses['new'] }}">{{ $statuses['new'] }}</option>
+                                        <option value="{{ $statuses['received'] }}">{{ $statuses['received'] }}</option>
+                                    </select>
                                 </th>
                             </tr>
                         </thead>
@@ -123,16 +193,78 @@
                         </tbody>
                     </table>
                 </div>
+                <div class="rounded-t mb-0 px-4 py-3 border-0">
+                    <div class="flex flex-wrap items-center">
+                        <div class="relative w-full px-4 max-w-full flex-grow flex-1">
+                            <button
+                                class="bg-amber-500 text-white active:bg-amber-400 hover:bg-amber-400 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                                type="button">
+                                <i class="fa fa-download"></i> Download
+                            </button>
+                        </div>
+                    </div>
+                    <div class="grid justify-items-end">
+                        <div class="py-2">
+                            {{ $order_returns->links() }}
+                            {{-- <nav class="block">
+                                <ul class="flex pl-0 rounded list-none flex-wrap">
+                                    <li>
+                                        <a href="#pablo"
+                                            class="first:ml-0 text-xs font-semibold flex w-8 h-8 mx-1 p-0 rounded-full items-center justify-center leading-tight relative border border-solid border-amber-500 bg-white text-amber-500">
+                                            <i class="fas fa-chevron-left -ml-px"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#pablo"
+                                            class="first:ml-0 text-xs font-semibold flex w-8 h-8 mx-1 p-0 rounded-full items-center justify-center leading-tight relative border border-solid border-amber-500 text-white bg-amber-500">
+                                            1
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#pablo"
+                                            class="first:ml-0 text-xs font-semibold flex w-8 h-8 mx-1 p-0 rounded-full items-center justify-center leading-tight relative border border-solid border-amber-500 bg-white text-amber-500">
+                                            2
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#pablo"
+                                            class="first:ml-0 text-xs font-semibold flex w-8 h-8 mx-1 p-0 rounded-full items-center justify-center leading-tight relative border border-solid border-amber-500 bg-white text-amber-500">
+                                            3
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#pablo"
+                                            class="first:ml-0 text-xs font-semibold flex w-8 h-8 mx-1 p-0 rounded-full items-center justify-center leading-tight relative border border-solid border-amber-500 bg-white text-amber-500">
+                                            4
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#pablo"
+                                            class="first:ml-0 text-xs font-semibold flex w-8 h-8 mx-1 p-0 rounded-full items-center justify-center leading-tight relative border border-solid border-amber-500 bg-white text-amber-500">
+                                            5
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#pablo"
+                                            class="first:ml-0 text-xs font-semibold flex w-8 h-8 mx-1 p-0 rounded-full items-center justify-center leading-tight relative border border-solid border-amber-500 bg-white text-amber-500">
+                                            <i class="fas fa-chevron-right -mr-px"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav> --}}
+                        </div>
+                        {{-- </div> --}}
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-    @push('script')
-        <script type="text/javascript">
-            $(document).on('click', '.view-details', function(e) {
-                e.preventDefault()
+        @push('script')
+            <script type="text/javascript">
+                $(document).on('click', '.view-details', function(e) {
+                    e.preventDefault()
 
-                console.log('clicked');
-            })
-        </script>
-    @endpush
+                    console.log('clicked');
+                })
+            </script>
+        @endpush
 </x-admin-app-layout>

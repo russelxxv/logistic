@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Enums\ReturnOrderStatus;
 use App\Models\OrderReturn;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -14,8 +15,15 @@ class ManageOrderReturnController extends Controller
 {
     public function index()
     {
+        $paginate = OrderReturn::paginate(10);
+        // dd($paginate->links());
+        
         return view('dashboard', [
-            'order_returns' => OrderReturn::all()
+            'order_returns' => $paginate,
+            'statuses' => [
+                'new' => ReturnOrderStatus::NEW->value,
+                'received' => ReturnOrderStatus::RECEIVED->value,
+            ]
         ]);
     }
     
