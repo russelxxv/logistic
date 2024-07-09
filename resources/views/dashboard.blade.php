@@ -245,7 +245,7 @@
 
                 $(document).on('click', '#btn-apply-filter', function() {
                     const filter_phone = $("#filter_phone").val()
-                    const filter_status = $("#filter_status").val()
+                    const filter_status = $("#filter_status").val() ?? ''
                     let url = '{{ route('dashboard') }}'
 
                     url = `${url}?filter_phone=${filter_phone}&filter_status=${filter_status}`

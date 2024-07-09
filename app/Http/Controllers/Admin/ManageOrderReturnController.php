@@ -7,9 +7,11 @@ use App\Models\OrderReturn;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ManageOrderReturnRequest;
 use App\Models\Address\City;
 use App\Models\Address\Country;
 use App\Models\Address\State;
+use App\Models\ProductCategory;
 
 class ManageOrderReturnController extends Controller
 {
@@ -44,6 +46,14 @@ class ManageOrderReturnController extends Controller
             'countries' => Country::all(),
             'states' => State::all(),
             'cities' => City::all(),
+            'productCategories' => ProductCategory::all(),
         ]);
+    }
+
+    public function update(ManageOrderReturnRequest $request)
+    {
+        $validated = $request->validated();
+
+        dd($validated);
     }
 }

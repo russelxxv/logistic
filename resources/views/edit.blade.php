@@ -237,22 +237,64 @@
                     <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
                         Order Return Details
                     </h6>
-                    {{-- <div class="flex flex-wrap">
-                        <div class="w-full lg:w-12/12 px-4">
-                            <div class="relative w-full mb-3">
-                                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                                    htmlFor="grid-password">
-                                    About me
-                                </label>
-                                <textarea type="text"
-                                    class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                                    rows="4">
-                              A beautiful UI Kit and Admin for JavaScript & Tailwind CSS. It is Free
-                              and Open Source.
-                            </textarea>
+                    <form name="form_order_return" method="post"
+                        action="{{ route('manage-order-return.update', ['id' => $order_return->id]) }}">
+                        @csrf
+                        @method('put')
+                        <div class="flex flex-wrap">
+                            <div class="w-full lg:w-6/12 px-4">
+                                <div class="relative w-full mb-3">
+                                    <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                                        for="order_number">
+                                        Order No. <span class="text-red-500">*</span>
+                                    </label>
+                                    <input type="text" required
+                                        class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                        value="{{ $order_return->order_number }}" name="order_number"
+                                        id="first_name" />
+                                    <x-input-error class="mt-2" :messages="$errors->get('order_number')" />
+                                </div>
                             </div>
+                            <div class="w-full lg:w-6/12 px-4">
+                                <div class="relative w-full mb-3">
+                                    <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                                        for="product_category">Product Category <span class="text-red-500">*</span>
+                                    </label>
+                                    <x-input-error class="mt-2" :messages="$errors->get('product_category')" />
+                                    <div class="grid grid-cols-3 gap-3">
+                                        @foreach ($productCategories as $category)
+                                            <div class="mb-[0.125rem] me-4 inline-block min-h-[1.5rem] ps-[1.5rem]">
+                                                <input
+                                                    class="relative float-left -ms-[1.5rem] me-[6px] mt-[0.15rem] h-[1.125rem] w-[1.125rem] appearance-none rounded-[0.25rem] border-[0.125rem] border-solid border-secondary-500 outline-none before:pointer-events-none before:absolute before:h-[0.875rem] before:w-[0.875rem] before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:shadow-checkbox before:shadow-transparent before:content-[''] checked:border-primary checked:bg-primary checked:before:opacity-[0.16] checked:after:absolute checked:after:-mt-px checked:after:ms-[0.25rem] checked:after:block checked:after:h-[0.8125rem] checked:after:w-[0.375rem] checked:after:rotate-45 checked:after:border-[0.125rem] checked:after:border-l-0 checked:after:border-t-0 checked:after:border-solid checked:after:border-white checked:after:bg-transparent checked:after:content-[''] hover:cursor-pointer hover:before:opacity-[0.04] hover:before:shadow-black/60 focus:shadow-none focus:transition-[border-color_0.2s] focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-black/60 focus:before:transition-[box-shadow_0.2s,transform_0.2s] focus:after:absolute focus:after:z-[1] focus:after:block focus:after:h-[0.875rem] focus:after:w-[0.875rem] focus:after:rounded-[0.125rem] focus:after:content-[''] checked:focus:before:scale-100 checked:focus:before:shadow-checkbox checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] checked:focus:after:-mt-px checked:focus:after:ms-[0.25rem] checked:focus:after:h-[0.8125rem] checked:focus:after:w-[0.375rem] checked:focus:after:rotate-45 checked:focus:after:rounded-none checked:focus:after:border-[0.125rem] checked:focus:after:border-l-0 checked:focus:after:border-t-0 checked:focus:after:border-solid checked:focus:after:border-white checked:focus:after:bg-transparent rtl:float-right dark:border-neutral-400 dark:checked:border-primary dark:checked:bg-primary"
+                                                    type="checkbox" id="{{ $category->name }}" name="product_category[]"
+                                                    value="{{ $category->id }}"
+                                                    {{ old('product_category') && in_array($category->id, old('product_category')) ? 'checked' : '' }} />
+                                                <label class="text-sm inline-block ps-[0.15rem] hover:cursor-pointer text-gray-600"
+                                                    for="{{ $category->name }}">{{ $category->name }}</label>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="w-full lg:w-6/12 px-4">
+                                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" for="product_category">Product Category <span class="text-red-500">*</span></label>
+                            </div>
+                            {{-- <div class="w-full lg:w-12/12 px-4">
+                                <div class="relative w-full mb-3">
+                                    <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                                        htmlFor="grid-password">
+                                        About me
+                                    </label>
+                                    <textarea type="text"
+                                        class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                        rows="4">
+                                A beautiful UI Kit and Admin for JavaScript & Tailwind CSS. It is Free
+                                and Open Source.
+                                </textarea>
+                                </div>
+                            </div> --}}
                         </div>
-                    </div> --}}
+                    </form>
                 </div>
             </div>
         </div>
