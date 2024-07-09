@@ -17,6 +17,7 @@ RUN apt-get update && apt-get install -y \
     locales \
     unzip \
     vim \
+    libzip-dev \
     zip
 
 # Clear cache
@@ -42,6 +43,7 @@ RUN docker-php-ext-install exif
 RUN docker-php-ext-install pdo_mysql
 RUN docker-php-ext-install ldap
 RUN docker-php-ext-install sockets
+RUN docker-php-ext-install zip
 
 # Install Composer
 COPY --from=composer:2.7.1 /usr/bin/composer /usr/local/bin/composer
