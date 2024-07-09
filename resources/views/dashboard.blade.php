@@ -74,8 +74,8 @@
                                 <th
                                     class="align-middle border border-solid text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-center bg-blueGray-50 text-blueGray-500 border-blueGray-100">
                                     <button
-                                        class="bg-amber-500 text-white active:bg-amber-400 hover:bg-amber-400 font-bold uppercase text-xs p-2 rounded-full shadow hover:shadow-md outline-none focus:outline-none ease-linear transition-all duration-150"
-                                        type="button">
+                                        class="bg-amber-500 text-white active:bg-amber-400 hover:bg-amber-400 font-bold uppercase text-xs p-2 rounded shadow hover:shadow-md outline-none focus:outline-none ease-linear transition-all duration-150"
+                                        type="button" id="btn-apply-filter">
                                         <i class="fa fa-search"></i>
                                     </button>
                                 </th>
@@ -87,9 +87,9 @@
                                     class="px-3 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100"></th>
                                 <th
                                     class="align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">
-                                    <input type="text"
+                                    <input type="text" id="filter_phone" name="filter_phone"
                                         class="border-0 border-amber-400 py-2 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring ring-amber-400 w-full ease-linear transition-all duration-150"
-                                        value="" placeholder="Phone" />
+                                        placeholder="Phone" value="{{ request('filter_phone') }}" />
                                 </th>
                                 <th
                                     class="px-3 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100"></th>
@@ -102,11 +102,11 @@
                                 </th>
                                 <th
                                     class="align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">
-                                    <select id="city" name="city" required
+                                    <select id="filter_status" name="filter_status" required
                                         class="block w-full rounded-md border-0 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-amber-600">
                                         <option selected disabled></option>
-                                        <option value="{{ $statuses['new'] }}">{{ $statuses['new'] }}</option>
-                                        <option value="{{ $statuses['received'] }}">{{ $statuses['received'] }}</option>
+                                        <option value="{{ $statuses['new'] }}" {{ request('filter_status') == 'new' ? 'selected': '' }}>{{ $statuses['new'] }}</option>
+                                        <option value="{{ $statuses['received'] }}" {{ request('filter_status') == 'received' ? 'selected': '' }}>{{ $statuses['received'] }}</option>
                                     </select>
                                 </th>
                             </tr>
@@ -241,6 +241,16 @@
                     e.preventDefault()
 
                     console.log('clicked');
+                })
+
+                $(document).on('click', '#btn-apply-filter', function() {
+                    const filter_phone = $("#filter_phone").val()
+                    const filter_status = $("#filter_status").val()
+                    let url = '{{ route('dashboard') }}'
+
+                    url = `${url}?filter_phone=${filter_phone}&filter_status=${filter_status}`
+
+                    window.location.href = url
                 })
             </script>
         @endpush

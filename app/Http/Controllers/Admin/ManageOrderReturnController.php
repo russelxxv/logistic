@@ -13,9 +13,20 @@ use App\Models\Address\State;
 
 class ManageOrderReturnController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $paginate = OrderReturn::paginate(10);
+        $query = OrderReturn::query()
+            ->leftJoin('customers', 'customers.id', '=', 'order_returns.customer_id');
+
+        if ($request->filled('filter_status')) {
+            $query->where('order_returns.status', $request->filter_status);
+        }
+
+        if ($request->filled('filter_phone')) {
+            $query->orWhere('customers.phone', 'like', '%'.$request->filter_phone.'%');
+        }
+
+        $paginate = $query->paginate(10);
         
         return view('dashboard', [
             'order_returns' => $paginate,
