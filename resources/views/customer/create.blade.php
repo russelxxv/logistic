@@ -1,4 +1,11 @@
 <x-form-layout>
+    @push('styles')
+        <style>
+            .iti.iti--allow-dropdown {
+                width: 100% !important;
+            }
+        </style>
+    @endpush
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ config('app.name', 'Online Order Return System') }}
@@ -207,7 +214,16 @@
             })
 
             var phoneInput = document.querySelector("#phone")
-            window.intlTelInput(phoneInput);
+            window.intlTelInput(phoneInput, ({
+                onlyCountries: ['us', 'ph'],
+                separateDialCode: true,
+            }));
+
+            phoneInput.addEventListener('countrychange', function(e) {
+                // console.log($(phoneInput).val(), e.target.value,e)
+                var countryData = $("#phone").intlTelInput("getSelectedCountryData");
+                console.log(countryData)
+            })
         </script>
     @endpush
 </x-form-layout>
