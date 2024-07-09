@@ -14,6 +14,7 @@
         <!-- Scripts -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tw-elements/css/tw-elements.min.css" />
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+        <link rel="stylesheet" href="{{ asset('assets/css/intlTelInput.min.css') }}">
         @stack('styles')
     </head>
     <body class="font-sans text-gray-900 antialiased">
@@ -41,5 +42,6 @@
     <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/js/common.js') }}"></script>
     <script src="{{ asset('assets/js/mask.js') }}"></script>
+    <script src="{{ asset('assets/js/intlTelInput.min.js') }}"></script>
     @stack('scripts')
 </html>

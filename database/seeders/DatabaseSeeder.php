@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
             ProductCategorySeeder::class,
             ReturnReasonSeeder::class,
             OrderReturnSeeder::class,
+            PhoneCountryCodeSeeder::class,
         ]);
 
     }

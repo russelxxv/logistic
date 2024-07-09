@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('middle_name')->nullable()->fulltext();
             $table->string('retailer_name')->nullable()->fulltext();
             $table->fulltext(['first_name', 'last_name', 'middle_name']);
+            $table->string('country_code')->nullable();
             $table->string('phone')->unique()->nullable();
             $table->string('email')->unique();
             $table->softDeletes();
