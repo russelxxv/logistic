@@ -213,16 +213,36 @@
                 }
             })
 
-            var phoneInput = document.querySelector("#phone")
-            window.intlTelInput(phoneInput, ({
+            const phoneInput = document.querySelector("#phone");
+            window.intlTelInput(phoneInput, {
+                utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@23.3.0/build/js/utils.js",
                 onlyCountries: ['us', 'ph'],
                 separateDialCode: true,
-            }));
+                formatOnDisplay: false,
+                nationalMode: false,
+                autoPlaceholder: 'aggressive',
+                hiddenInput: function(telInputName) {
+                    return {
+                        phone: "phone_full",
+                        country: "country_code"
+                    };
+                }
+            });
+
+            // var phoneInput = document.querySelector("#phone")
+            // window.intlTelInput(phoneInput, ({
+            //     onlyCountries: ['us', 'ph'],
+            //     separateDialCode: true,
+            //     formatOnDisplay: false,
+            //     nationalMode: false,
+            //     autoPlaceholder: 'aggressive',
+            // }));
 
             phoneInput.addEventListener('countrychange', function(e) {
                 // console.log($(phoneInput).val(), e.target.value,e)
-                var countryData = $("#phone").intlTelInput("getSelectedCountryData");
-                console.log(countryData)
+                // var countryData = phoneInput("getSelectedCountryData");
+                const iti = intlTelInput.getInstance(e.target);
+                console.log(e, iti, iti.dialCode())
             })
         </script>
     @endpush

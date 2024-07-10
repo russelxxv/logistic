@@ -14,7 +14,8 @@
         <!-- Scripts -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tw-elements/css/tw-elements.min.css" />
         @vite(['resources/css/app.css', 'resources/js/app.js'])
-        <link rel="stylesheet" href="{{ asset('assets/css/intlTelInput.min.css') }}">
+        {{-- <link rel="stylesheet" href="{{ asset('assets/css/intlTelInput.min.css') }}"> --}}
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@23.3.0/build/css/intlTelInput.css">
         @stack('styles')
     </head>
     <body class="font-sans text-gray-900 antialiased">
@@ -35,13 +36,17 @@
         </div>
     </body>
 
+    {{-- Libraries --}}
+    <script src="https://cdn.jsdelivr.net/npm/tw-elements/js/tw-elements.umd.min.js"></script>
+    <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
+    {{-- <script src="{{ asset('assets/js/intlTelInput.min.js') }}"></script> --}}
+    <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@23.3.0/build/js/intlTelInput.min.js"></script>
+    <script src="{{ asset('assets/js/mask.js') }}"></script>
+
+    {{-- Custom --}}
     <script>
         var app = app || {};
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/tw-elements/js/tw-elements.umd.min.js"></script>
-    <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/js/common.js') }}"></script>
-    <script src="{{ asset('assets/js/mask.js') }}"></script>
-    <script src="{{ asset('assets/js/intlTelInput.min.js') }}"></script>
     @stack('scripts')
 </html>

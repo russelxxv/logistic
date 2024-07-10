@@ -23,6 +23,7 @@ class CustomerController extends Controller
 
     public function store(CustomerRequest $request)
     {
+        dd($request);
         $data = $request->validated();
         
         // store customer details

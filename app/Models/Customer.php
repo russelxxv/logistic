@@ -20,6 +20,7 @@ class Customer extends Model
         'retailer_name',
         'phone',
         'email',
+        'country_code',
     ];
 
     // hidden attribute when fetch thru apis

@@ -41,12 +41,13 @@ class CustomerRequest extends FormRequest
             'last_name' => ['required', 'string', new DbVarcharMaxLength()],
             'middle_name' => ['nullable', 'string', new DbVarcharMaxLength()],
             'retailer_name' => ['nullable', 'string', new DbVarcharMaxLength()],
-            'phone' => [
+            'phone_full' => [
                 'required',
                 'unique:customers,phone',
                 // 'phone:US'
                 // (new PhoneRule())->country('US')->type('fixed_line_or_mobile'),
             ],
+            'country_code' => ['required', 'string'],
             'email' => ['required', 'email', 'unique:customers,email'],
             'city_id' => ['required', 'exists:cities,id'],
             'state_id' => ['required', 'exists:states,id'],
