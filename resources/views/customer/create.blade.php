@@ -39,7 +39,7 @@
                 <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                     <div class="sm:col-span-2">
                         <label for="first-name" class="block text-sm font-medium leading-6 text-gray-900">First
-                            name <span class="text-red-500">*</span></label>
+                            Name <span class="text-red-500">*</span></label>
                         <div class="mt-2">
                             <input type="text" name="first_name" id="first-name" autocomplete="given-name" required
                                 class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -49,7 +49,7 @@
                     </div>
                     <div class="sm:col-span-2">
                         <label for="last-name" class="block text-sm font-medium leading-6 text-gray-900">Last
-                            name <span class="text-red-500">*</span></label>
+                            Name <span class="text-red-500">*</span></label>
                         <div class="mt-2">
                             <input type="text" name="last_name" id="last-name" autocomplete="family-name" required
                                 class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -59,7 +59,7 @@
                     </div>
                     <div class="sm:col-span-2">
                         <label for="middle-name" class="block text-sm font-medium leading-6 text-gray-900">Middle
-                            name</label>
+                            Name</label>
                         <div class="mt-2">
                             <input type="text" name="middle_name" id="middle-name" autocomplete="family-name"
                                 class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -69,7 +69,7 @@
                     </div>
                     <div class="sm:col-span-3">
                         <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email
-                            address <span class="text-red-500">*</span></label>
+                            Address <span class="text-red-500">*</span></label>
                         <div class="mt-2">
                             <input id="email" name="email" type="email" autocomplete="email" required
                                 class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -91,7 +91,7 @@
                     <h2 class="text-base font-semibold leading-7 text-gray-900">Address</h2>
                     <div class="col-span-full">
                         <label for="street-address" class="block text-sm font-medium leading-6 text-gray-900">Street /
-                            Address line <span class="text-red-500">*</span></label>
+                            Address Line <span class="text-red-500">*</span></label>
                         <div class="mt-2">
                             <input type="text" name="address_line" id="street-address" required
                                 autocomplete="street-address" value="{{ old('address_line') }}"
@@ -141,7 +141,7 @@
                     </div>
                     <div class="sm:col-span-2">
                         <label for="postal-code" class="block text-sm font-medium leading-6 text-gray-900">ZIP /
-                            Postal code <span class="text-red-500">*</span></label>
+                            Postal Code <span class="text-red-500">*</span></label>
                         <div class="mt-2">
                             <input type="text" name="postal_code" id="postal-code" autocomplete="postal-code"
                                 required
@@ -154,12 +154,12 @@
                         <input type="checkbox" name="is_retailer" id="is-retailer">
                         <label for="is-retailer"
                             class="inline-block text-sm font-medium leading-6 text-gray-900 hover:cursor-pointer">Are
-                            you a retailer?</label>
+                            You A Retailer?</label>
                         <x-input-error class="mt-2" :messages="$errors->get('is_retailer')" />
                     </div>
                     <div class="sm:col-span-2 hidden" id="div-retailer">
                         <label for="retailer-name" class="block text-sm font-medium leading-6 text-gray-900">Retailer
-                            name <span class="text-red-500">*</span></label>
+                            Name <span class="text-red-500">*</span></label>
                         <div class="mt-2">
                             <input type="text" name="retailer_name" id="retailer-name"
                                 autocomplete="retailer-name"
