@@ -12,9 +12,15 @@ class CountriesSeeder extends Seeder
      */
     public function run(): void
     {
-        Country::create([
-            'code' => 'US',
-            'name' => 'United States',
+        Country::insert([
+            [
+                'code' => 'US',
+                'name' => 'United States',
+            ],
+            [
+                'code' => 'PH',
+                'name' => 'Philippines',
+            ]
         ]);
     }
 }

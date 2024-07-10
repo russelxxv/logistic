@@ -5,7 +5,12 @@
         </h4>
     </x-slot>
 
-    <h2 class="text-xl font-semibold leading-7 text-gray-900 mb-10 text-center">Order Return</h2>
+    <div class="grid grid-cols-3 mb-10">
+        <a href="{{ route('order-return.close') }}"
+                    class="text-sm font-semibold text-dark shadow-sm hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2">Back</a>
+
+        <h2 class="col-span-2 text-xl font-semibold leading-7 text-gray-900 mb-10 text-start">Order Return</h2>
+    </div>
 
     @if ($errors->any())
         <div class="bg-red-100 border-l-4 border-red-500 text-orange-700 p-4" role="alert">
@@ -32,7 +37,7 @@
     <div class="space-y-4">
         <form method="post" action="{{ route('order-return.store', [], false) }}" id="form-order-return">
             @csrf
-            <div class="my-4 gap-x-4 gap-y-4 grid grid-cols-2">
+            <div class="my-4 gap-x-4 gap-y-4 grid grid-cols-2 pb-12 border-b border-gray-900/10">
                 {{-- Start Order Number --}}
                 <div class="sm:col-span-1 mb-2">
                     <label for="order-number" class="block text-sm font-medium leading-6 text-gray-900">Order No.: <span class="text-red-500">*</span></label>
@@ -109,16 +114,15 @@
                     </div>
                 </div>
                 {{-- /End Notes / Special Description --}}
-
-                <div class="mt-6 flex items-center gap-x-6">
-                    <button type="submit"
-                        class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Submit</button>
-
-                    <a href="{{ route('order-return.close') }}"
-                        class="rounded-md bg-gray-300 px-3 py-2 text-sm font-semibold text-dark shadow-sm hover:bg-gray-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Cancel</a>
-                </div>
             </div>
             {{-- End Grid cols --}}
+            <div class="mt-6 flex justify-end gap-x-6">
+                <button type="submit"
+                    class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Submit</button>
+
+                {{-- <a href="{{ route('order-return.close') }}"
+                    class="rounded-md bg-gray-300 px-3 py-2 text-sm font-semibold text-dark shadow-sm hover:bg-gray-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Cancel</a> --}}
+            </div>
         </form>
     </div>
     {{-- End space div --}}
