@@ -19,6 +19,7 @@ class ManageOrderReturnController extends Controller
     public function index(Request $request)
     {
         $query = OrderReturn::query()
+            ->select('order_returns.*')
             ->leftJoin('customers', 'customers.id', '=', 'order_returns.customer_id');
 
         if ($request->filled('filter_status')) {

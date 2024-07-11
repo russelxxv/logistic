@@ -8,11 +8,13 @@
                         <h6 class="text-blueGray-700 text-xl font-bold">
                             Edit Customer Order Return
                         </h6>
+                        @if (strtolower($order_return->status) != 'received')
                         <button id="btn-receive" data-order_id="{{ $order_return->id }}"
                             class="bg-amber-500 text-white hover:bg-amber-400 active:bg-amber-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                             type="button">
                             Received
                         </button>
+                        @endif
                     </div>
                 </div>
                 <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
@@ -175,7 +177,7 @@
                                     </label>
                                     <input type="text" name="address_line" required
                                         class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                                        value="{{ $order_return->customer->address->address_line }}" />
+                                        value="{{ $order_return->customer->address->address_line ?? '' }}" />
                                     <x-input-error class="mt-2" :messages="$errors->get('address_line')" />
                                 </div>
                             </div>
