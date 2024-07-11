@@ -19,6 +19,7 @@ class OrderReturn extends Model
         'customer_id',
         'order_return_reason_id',
         'details',
+        'status',
     ];
 
     // relations always load when fetching

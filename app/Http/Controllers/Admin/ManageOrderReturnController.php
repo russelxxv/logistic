@@ -12,6 +12,7 @@ use App\Models\Address\City;
 use App\Models\Address\Country;
 use App\Models\Address\State;
 use App\Models\ProductCategory;
+use Illuminate\Support\Facades\Session;
 
 class ManageOrderReturnController extends Controller
 {
@@ -55,5 +56,17 @@ class ManageOrderReturnController extends Controller
         $validated = $request->validated();
 
         dd($validated);
+    }
+
+    public function receivedOrderReturn($id)
+    {
+        $order = OrderReturn::findOrFail($id);
+
+        $order->update([
+            'status' => ReturnOrderStatus::RECEIVED->value,
+        ]);
+
+        Session::flash('order.status', 'Order Status Updated');
+        return redirect()->back();
     }
 }

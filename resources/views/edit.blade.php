@@ -8,9 +8,29 @@
                         <h6 class="text-blueGray-700 text-xl font-bold">
                             Edit Customer Order Return
                         </h6>
+                        <button id="btn-receive" data-order_id="{{ $order_return->id }}"
+                            class="bg-amber-500 text-white hover:bg-amber-400 active:bg-amber-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                            type="button">
+                            Received
+                        </button>
                     </div>
                 </div>
                 <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
+                    @session('order.status')
+                        <div class="text-white px-6 py-4 border-0 rounded relative mb-4 bg-amber-500">
+                            <span class="text-xl inline-block mr-5 align-middle">
+                                <i class="fas fa-check"></i>
+                            </span>
+                            <span class="inline-block align-middle mr-8">
+                                <b class="capitalize">Received!</b>
+                            </span>
+                            <button
+                                class="absolute bg-transparent text-2xl font-semibold leading-none right-0 top-0 mt-4 mr-6 outline-none focus:outline-none">
+                                <span>×</span>
+                            </button>
+                        </div>
+                    @endsession
+                    
                     {{-- start customer info --}}
                     <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
                         Customer Information
@@ -102,11 +122,13 @@
                                 <div class="relative w-full mb-3">
                                     <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                                         for="retailer_name">
-                                        Retailer name <span class="italic lowercase text-xs">(leave blank if not applicable)</span>
+                                        Retailer name <span class="italic lowercase text-xs">(leave blank if not
+                                            applicable)</span>
                                     </label>
                                     <input type="text"
                                         class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                                        value="{{ $order_return->customer->retailer_name }}" name="retailer_name" id="retailer_name" />
+                                        value="{{ $order_return->customer->retailer_name }}" name="retailer_name"
+                                        id="retailer_name" />
                                     <x-input-error class="mt-2" :messages="$errors->get('retailer_name')" />
                                 </div>
                             </div>
@@ -266,10 +288,11 @@
                                             <div class="mb-[0.125rem] me-4 inline-block min-h-[1.5rem] ps-[1.5rem]">
                                                 <input
                                                     class="relative float-left -ms-[1.5rem] me-[6px] mt-[0.15rem] h-[1.125rem] w-[1.125rem] appearance-none rounded-[0.25rem] border-[0.125rem] border-solid border-secondary-500 outline-none before:pointer-events-none before:absolute before:h-[0.875rem] before:w-[0.875rem] before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:shadow-checkbox before:shadow-transparent before:content-[''] checked:border-primary checked:bg-primary checked:before:opacity-[0.16] checked:after:absolute checked:after:-mt-px checked:after:ms-[0.25rem] checked:after:block checked:after:h-[0.8125rem] checked:after:w-[0.375rem] checked:after:rotate-45 checked:after:border-[0.125rem] checked:after:border-l-0 checked:after:border-t-0 checked:after:border-solid checked:after:border-white checked:after:bg-transparent checked:after:content-[''] hover:cursor-pointer hover:before:opacity-[0.04] hover:before:shadow-black/60 focus:shadow-none focus:transition-[border-color_0.2s] focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-black/60 focus:before:transition-[box-shadow_0.2s,transform_0.2s] focus:after:absolute focus:after:z-[1] focus:after:block focus:after:h-[0.875rem] focus:after:w-[0.875rem] focus:after:rounded-[0.125rem] focus:after:content-[''] checked:focus:before:scale-100 checked:focus:before:shadow-checkbox checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] checked:focus:after:-mt-px checked:focus:after:ms-[0.25rem] checked:focus:after:h-[0.8125rem] checked:focus:after:w-[0.375rem] checked:focus:after:rotate-45 checked:focus:after:rounded-none checked:focus:after:border-[0.125rem] checked:focus:after:border-l-0 checked:focus:after:border-t-0 checked:focus:after:border-solid checked:focus:after:border-white checked:focus:after:bg-transparent rtl:float-right dark:border-neutral-400 dark:checked:border-primary dark:checked:bg-primary"
-                                                    type="checkbox" id="{{ $category->name }}" name="product_category[]"
-                                                    value="{{ $category->id }}"
+                                                    type="checkbox" id="{{ $category->name }}"
+                                                    name="product_category[]" value="{{ $category->id }}"
                                                     {{ old('product_category') && in_array($category->id, old('product_category')) ? 'checked' : '' }} />
-                                                <label class="text-sm inline-block ps-[0.15rem] hover:cursor-pointer text-gray-600"
+                                                <label
+                                                    class="text-sm inline-block ps-[0.15rem] hover:cursor-pointer text-gray-600"
                                                     for="{{ $category->name }}">{{ $category->name }}</label>
                                             </div>
                                         @endforeach
@@ -277,10 +300,12 @@
                                 </div>
                             </div>
                             <div class="w-full lg:w-6/12 px-4">
-                                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" for="product_category">Order Items <span class="text-red-500">*</span></label>
-                                <input type="text" name="item_number[]" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                            placeholder="Item number" aria-describedby="item_number_1"
-                            value="{{ old('item_number') ? old('item_number')[0] : '' }}" pattern="[0-9]*" />
+                                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                                    for="product_category">Order Items <span class="text-red-500">*</span></label>
+                                <input type="text" name="item_number[]"
+                                    class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                    placeholder="Item number" aria-describedby="item_number_1"
+                                    value="{{ old('item_number') ? old('item_number')[0] : '' }}" pattern="[0-9]*" />
                             </div>
                             {{-- <div class="w-full lg:w-12/12 px-4">
                                 <div class="relative w-full mb-3">
@@ -340,6 +365,55 @@
                     $("#div-retailer").addClass('hidden')
                     $("#retailer-name").removeAttr('required')
                 }
+            })
+
+            // receive
+            $("#btn-receive").click(function() {
+                const orderId = $(this).data('order_id');
+                Swal.fire({
+                    title: "Received this Item ?",
+                    // text: "You won't be able to revert this!",
+                    icon: "info",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes",
+                    cancelButtonText: "No",
+                    showLoaderOnConfirm: true,
+                    preConfirm: async (login) => {
+                        try {
+                            let url = app.data.appUrl
+                            const urlEndPoint = `${url}manage-order-return/status/${orderId}`;
+                            const form = document.createElement('form');
+                            form.setAttribute('method', 'post');
+                            form.setAttribute('action', urlEndPoint);
+
+                            const inputMethod = document.createElement('input');
+                            inputMethod.setAttribute('name', '_method');
+                            inputMethod.value = 'PUT';
+
+                            const inputCsrf = document.createElement('input');
+                            inputCsrf.value = '{{ csrf_token() }}';
+                            inputCsrf.setAttribute('name', '_token');
+
+                            form.appendChild(inputMethod);
+                            form.appendChild(inputCsrf);
+                            $("body").append(form);
+                            form.submit();
+                        } catch (error) {
+                            Swal.showValidationMessage(`Request failed: ${error}`);
+                        }
+                    },
+                    allowOutsideClick: () => !Swal.isLoading()
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Swal.fire({
+                            title: "Deleted!",
+                            text: "Your file has been deleted.",
+                            icon: "success"
+                        });
+                    }
+                });
             })
         </script>
     @endpush

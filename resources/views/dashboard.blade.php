@@ -35,6 +35,10 @@
                                 </th>
                                 <th
                                     class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">
+                                    Status
+                                </th>
+                                <th
+                                    class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">
                                     Order Number
                                 </th>
                                 <th
@@ -65,10 +69,6 @@
                                     class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">
                                     Date Created
                                 </th>
-                                <th
-                                    class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">
-                                    Status
-                                </th>
                             </tr>
                             <tr>
                                 <th
@@ -80,6 +80,15 @@
                                     </button>
                                 </th>
                                 <th
+                                    class="align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">
+                                    <select id="filter_status" name="filter_status" required
+                                        class="block w-full text-xs rounded-md border-0 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-amber-600">
+                                        <option selected disabled>- Status -</option>
+                                        <option value="{{ $statuses['new'] }}" {{ request('filter_status') == 'new' ? 'selected': '' }}>{{ $statuses['new'] }}</option>
+                                        <option value="{{ $statuses['received'] }}" {{ request('filter_status') == 'received' ? 'selected': '' }}>{{ $statuses['received'] }}</option>
+                                    </select>
+                                </th>
+                                <th
                                     class="px-3 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100"></th>
                                 <th
                                     class="px-3 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100"></th>
@@ -88,7 +97,7 @@
                                 <th
                                     class="align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">
                                     <input type="text" id="filter_phone" name="filter_phone"
-                                        class="border-0 border-amber-400 py-2 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring ring-amber-400 w-full ease-linear transition-all duration-150"
+                                        class="border-0 border-amber-400 py-2 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-xs shadow focus:outline-none focus:ring ring-amber-400 w-full ease-linear transition-all duration-150"
                                         placeholder="Phone" value="{{ request('filter_phone') }}" />
                                 </th>
                                 <th
@@ -99,15 +108,6 @@
                                     class="px-3 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100"></th>
                                 <th
                                     class="px-3 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">
-                                </th>
-                                <th
-                                    class="align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">
-                                    <select id="filter_status" name="filter_status" required
-                                        class="block w-full rounded-md border-0 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-amber-600">
-                                        <option selected disabled></option>
-                                        <option value="{{ $statuses['new'] }}" {{ request('filter_status') == 'new' ? 'selected': '' }}>{{ $statuses['new'] }}</option>
-                                        <option value="{{ $statuses['received'] }}" {{ request('filter_status') == 'received' ? 'selected': '' }}>{{ $statuses['received'] }}</option>
-                                    </select>
                                 </th>
                             </tr>
                         </thead>
@@ -125,6 +125,11 @@
                                             <a href="{{ route('manage-order-return.edit', ['id' => $order->id], false) }}"
                                                 class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700 hover:text-amber-500">View</a>
                                         </div>
+                                    </td>
+                                    <td
+                                        class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                        <i class="fas fa-circle text-emerald-500 mr-2"></i>
+                                        {{ $order->status }}
                                     </td>
                                     <th
                                         class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left flex items-center">
@@ -159,11 +164,6 @@
                                     <td
                                         class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                                         {{ $order->created_at }}
-                                    </td>
-                                    <td
-                                        class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                                        <i class="fas fa-circle text-emerald-500 mr-2"></i>
-                                        {{ $order->status }}
                                     </td>
                                 </tr>
                             @endforeach
