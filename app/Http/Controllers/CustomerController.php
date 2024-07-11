@@ -23,7 +23,6 @@ class CustomerController extends Controller
 
     public function store(CustomerRequest $request)
     {
-        dd($request);
         $data = $request->validated();
         
         // store customer details
@@ -32,8 +31,9 @@ class CustomerController extends Controller
             'last_name' => $data['last_name'],
             'middle_name' => $data['middle_name'],
             'retailer_name' => $data['retailer_name'],
-            'phone' => $data['phone'],
+            'phone' => $data['phone_full'],
             'email' => $data['email'],
+            'country_code' => $data['country_code'],
         ]);
 
         // store address binded with customer_id

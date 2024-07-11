@@ -84,7 +84,8 @@
                             <input id="phone" name="phone" type="tel" autocomplete="phone" required
                                 class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                 value="{{ old('phone') }}">
-                            <x-input-error class="mt-2" :messages="$errors->get('phone')" />
+                            <x-input-error class="mt-2" :messages="$errors->get('phone_full')" />
+                            <x-input-error class="mt-2" :messages="$errors->get('country_code')" />
                         </div>
                     </div>
 
@@ -229,20 +230,8 @@
                 }
             });
 
-            // var phoneInput = document.querySelector("#phone")
-            // window.intlTelInput(phoneInput, ({
-            //     onlyCountries: ['us', 'ph'],
-            //     separateDialCode: true,
-            //     formatOnDisplay: false,
-            //     nationalMode: false,
-            //     autoPlaceholder: 'aggressive',
-            // }));
-
             phoneInput.addEventListener('countrychange', function(e) {
-                // console.log($(phoneInput).val(), e.target.value,e)
-                // var countryData = phoneInput("getSelectedCountryData");
                 const iti = intlTelInput.getInstance(e.target);
-                console.log(e, iti, iti.dialCode())
             })
         </script>
     @endpush

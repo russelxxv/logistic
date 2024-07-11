@@ -277,7 +277,10 @@
                                 </div>
                             </div>
                             <div class="w-full lg:w-6/12 px-4">
-                                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" for="product_category">Product Category <span class="text-red-500">*</span></label>
+                                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" for="product_category">Order Items <span class="text-red-500">*</span></label>
+                                <input type="text" name="item_number[]" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                            placeholder="Item number" aria-describedby="item_number_1"
+                            value="{{ old('item_number') ? old('item_number')[0] : '' }}" pattern="[0-9]*" />
                             </div>
                             {{-- <div class="w-full lg:w-12/12 px-4">
                                 <div class="relative w-full mb-3">
