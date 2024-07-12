@@ -18,11 +18,20 @@
                     </div>
                 </div>
                 <div class="rounded-t mb-0 px-4 py-3 border-0">
-                    <div class="flex flex-wrap items-center">
-                        <div class="relative w-full px-4 max-w-full flex-grow flex-1">
-                            Filters
+                    @session('export.done')
+                        <div class="text-white px-6 py-4 border-0 rounded relative mb-4 bg-amber-500">
+                            <span class="text-xl inline-block mr-5 align-middle">
+                                <i class="fas fa-check"></i>
+                            </span>
+                            <span class="inline-block align-middle mr-8">
+                                <b class="capitalize">Export Done</b>
+                            </span>
+                            <button
+                                class="absolute bg-transparent text-2xl font-semibold leading-none right-0 top-0 mt-4 mr-6 outline-none focus:outline-none">
+                                <span>×</span>
+                            </button>
                         </div>
-                    </div>
+                    @endsession
                 </div>
                 <div class="block w-full overflow-x-auto">
                     <!-- Projects table -->
@@ -173,11 +182,11 @@
                 <div class="rounded-t mb-0 px-4 py-3 border-0">
                     <div class="flex flex-wrap items-center">
                         <div class="relative w-full px-4 max-w-full flex-grow flex-1">
-                            <button
+                            <a href="{{ route('manage-order-return.export') }}"
                                 class="bg-amber-500 text-white active:bg-amber-400 hover:bg-amber-400 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button">
                                 <i class="fa fa-download"></i> Download
-                            </button>
+                            </a>
                         </div>
                     </div>
                     <div class="grid justify-items-end">

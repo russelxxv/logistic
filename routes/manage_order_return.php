@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\ManageOrderReturnController;
+use App\Http\Controllers\ExportOrderReturnList;
 use Illuminate\Support\Facades\Route;
 
 
@@ -11,3 +12,5 @@ Route::middleware(['auth', 'verified'])->prefix('/manage-order-return')->control
     Route::get('edit/{id}', 'edit')->name('edit');
     Route::put('{id}', 'update')->name('update');
 });
+
+Route::get('/export-order-return', ExportOrderReturnList::class)->name('manage-order-return.export');
