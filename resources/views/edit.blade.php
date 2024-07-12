@@ -14,6 +14,10 @@
                             type="button">
                             Received
                         </button>
+                        @else
+                            <span class="text-xs font-bold inline-block py-2 px-2 rounded-full text-amber-700 bg-amber-300 uppercase last:mr-0 mr-1  border-amber-700 border">
+                                <i class="fas fa-check mr-1"></i> Received
+                            </span>
                         @endif
                     </div>
                 </div>
@@ -173,7 +177,7 @@
                                 <div class="relative w-full mb-3">
                                     <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                                         for="address_line">
-                                        Address
+                                        Address <span class="text-red-500">*</span>
                                     </label>
                                     <input type="text" name="address_line" required
                                         class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
@@ -185,7 +189,7 @@
                                 <div class="relative w-full mb-3">
                                     <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                                         for="country">
-                                        Country
+                                        Country <span class="text-red-500">*</span>
                                     </label>
                                     <select id="country" name="country" required
                                         class="block w-full rounded-md border-0 px-3 py-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-amber-600">
@@ -202,7 +206,7 @@
                                 <div class="relative w-full mb-3">
                                     <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                                         for="state">
-                                        State
+                                        State <span class="text-red-500">*</span>
                                     </label>
                                     <select id="state" name="state" required
                                         class="block w-full rounded-md border-0 px-3 py-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-amber-600">
@@ -220,7 +224,7 @@
                                 <div class="relative w-full mb-3">
                                     <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                                         for="city">
-                                        City
+                                        City <span class="text-red-500">*</span>
                                     </label>
                                     <select id="city" name="city" required
                                         class="block w-full rounded-md border-0 px-3 py-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-amber-600">
@@ -238,7 +242,7 @@
                                 <div class="relative w-full mb-3">
                                     <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                                         for="postal_code">
-                                        Postal Code
+                                        Postal Code <span class="text-red-500">*</span>
                                     </label>
                                     <input type="text" id="postal_code" name="postal_code" required
                                         class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
@@ -287,12 +291,12 @@
                                     <x-input-error class="mt-2" :messages="$errors->get('product_category')" />
                                     <div class="grid grid-cols-3 gap-3">
                                         @foreach ($productCategories as $category)
+                                            @php $isChecked = in_array($category->id, $selectedProducts) ? 'checked' :'' @endphp
                                             <div class="mb-[0.125rem] me-4 inline-block min-h-[1.5rem] ps-[1.5rem]">
                                                 <input
                                                     class="relative float-left -ms-[1.5rem] me-[6px] mt-[0.15rem] h-[1.125rem] w-[1.125rem] appearance-none rounded-[0.25rem] border-[0.125rem] border-solid border-secondary-500 outline-none before:pointer-events-none before:absolute before:h-[0.875rem] before:w-[0.875rem] before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:shadow-checkbox before:shadow-transparent before:content-[''] checked:border-primary checked:bg-primary checked:before:opacity-[0.16] checked:after:absolute checked:after:-mt-px checked:after:ms-[0.25rem] checked:after:block checked:after:h-[0.8125rem] checked:after:w-[0.375rem] checked:after:rotate-45 checked:after:border-[0.125rem] checked:after:border-l-0 checked:after:border-t-0 checked:after:border-solid checked:after:border-white checked:after:bg-transparent checked:after:content-[''] hover:cursor-pointer hover:before:opacity-[0.04] hover:before:shadow-black/60 focus:shadow-none focus:transition-[border-color_0.2s] focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-black/60 focus:before:transition-[box-shadow_0.2s,transform_0.2s] focus:after:absolute focus:after:z-[1] focus:after:block focus:after:h-[0.875rem] focus:after:w-[0.875rem] focus:after:rounded-[0.125rem] focus:after:content-[''] checked:focus:before:scale-100 checked:focus:before:shadow-checkbox checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] checked:focus:after:-mt-px checked:focus:after:ms-[0.25rem] checked:focus:after:h-[0.8125rem] checked:focus:after:w-[0.375rem] checked:focus:after:rotate-45 checked:focus:after:rounded-none checked:focus:after:border-[0.125rem] checked:focus:after:border-l-0 checked:focus:after:border-t-0 checked:focus:after:border-solid checked:focus:after:border-white checked:focus:after:bg-transparent rtl:float-right dark:border-neutral-400 dark:checked:border-primary dark:checked:bg-primary"
                                                     type="checkbox" id="{{ $category->name }}"
-                                                    name="product_category[]" value="{{ $category->id }}"
-                                                    {{ old('product_category') && in_array($category->id, old('product_category')) ? 'checked' : '' }} />
+                                                    name="product_category[]" value="{{ $category->id }}" {{ $isChecked }} />
                                                 <label
                                                     class="text-sm inline-block ps-[0.15rem] hover:cursor-pointer text-gray-600"
                                                     for="{{ $category->name }}">{{ $category->name }}</label>
@@ -306,23 +310,65 @@
                                     for="product_category">Order Items <span class="text-red-500">*</span></label>
                                 <input type="text" name="item_number[]"
                                     class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                                    placeholder="Item number" aria-describedby="item_number_1"
-                                    value="{{ old('item_number') ? old('item_number')[0] : '' }}" pattern="[0-9]*" />
+                                    placeholder="New Item Number"
+                                    value="" pattern="[0-9]*" />
                             </div>
-                            {{-- <div class="w-full lg:w-12/12 px-4">
+                            <div class="w-full lg:w-6/12 px-4 mb-2">
+                                <div class="mt-7 -ml-2" id="div-add-item">
+                                    <button type="button" id="btn-add-item"
+                                        class="bg-amber-500 text-white block active:bg-amber-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md hover:bg-amber-300 outline-none focus:outline-none mr-1 ease-linear transition-all duration-150">
+                                        <i class="fa fa-plus"></i> Add item
+                                    </button>
+                                </div>
+                            </div>
+                            @foreach ($order_return->returnItems as $return)
+                                <div class="w-full lg:w-6/12 px-4 mt-2 item-container mb-2">
+                                    <div class="relative flex w-full flex-wrap items-stretch mb-3">
+                                        <input type="text" required value="{{ $return->item_number }}"
+                                        class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 relative bg-white rounded text-sm shadow outline-none focus:outline-none focus:ring w-full pr-10"/>
+                                        <span class="z-10 h-full leading-snug font-normal text-center text-blueGray-300 absolute bg-transparent rounded text-base items-center justify-center w-8 right-0 pr-3 py-3 hover:cursor-pointer ">
+                                        <i class="fas fa-times text-red-400 hover:text-red-600" title="Delete Order Item" onclick="deleteItem(this)"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            @endforeach
+                            
+                            <div class="w-full lg:w-6/12 px-4 mb-3">
+                                <div class="relative w-full">
+                                    <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                                        for="return_reason_id">
+                                        Reason <span class="text-red-500">*</span>
+                                    </label>
+                                    <select id="return_reason_id" name="return_reason_id" required
+                                        class="block w-full rounded-md border-0 px-3 py-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-amber-600">
+                                        <option selected disabled></option>
+                                        @foreach ($reasonChoices as $reason)
+                                            <option value="{{ $reason->id }}"
+                                                {{ $reason->id == $order_return->order_return_reason_id ? 'selected' : '' }}>
+                                                {{ $reason->reason }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="w-full lg:w-12/12 px-4 mt-2">
                                 <div class="relative w-full mb-3">
                                     <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                                         htmlFor="grid-password">
-                                        About me
+                                        Other Notes/Instructions <span class="text-red-500">*</span>
                                     </label>
-                                    <textarea type="text"
+                                    <textarea type="text" id="details" name="details"
                                         class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                                        rows="4">
-                                A beautiful UI Kit and Admin for JavaScript & Tailwind CSS. It is Free
-                                and Open Source.
-                                </textarea>
+                                        rows="4">{{ $order_return->details }}</textarea>
                                 </div>
-                            </div> --}}
+                            </div>
+                            <div class="w-full px-4 mt-1">
+                                <button
+                                    class="bg-amber-500 text-white block active:bg-amber-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md hover:bg-amber-300 outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                                    type="submit">
+                                    Update
+                                </button>
+                            </div>
                         </div>
                     </form>
                 </div>
@@ -417,6 +463,14 @@
                     }
                 });
             })
+            // end receive
+
+
+            // Order Item
+            function deleteItem(el) {
+                const p = $(el).parents(".item-container");
+                p.remove()
+            }
         </script>
     @endpush
 </x-admin-app-layout>

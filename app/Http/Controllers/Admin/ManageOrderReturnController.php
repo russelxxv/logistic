@@ -11,6 +11,8 @@ use App\Http\Requests\ManageOrderReturnRequest;
 use App\Models\Address\City;
 use App\Models\Address\Country;
 use App\Models\Address\State;
+use App\Models\OrderReturnProductCategory;
+use App\Models\OrderReturnReason;
 use App\Models\ProductCategory;
 use Illuminate\Support\Facades\Session;
 
@@ -43,12 +45,16 @@ class ManageOrderReturnController extends Controller
     
     public function edit($id): View
     {
+        $orderReturn = OrderReturn::findOrFail($id);
+
         return view('edit', [
-            'order_return' => OrderReturn::findOrFail($id),
+            'order_return' => $orderReturn,
+            'selectedProducts' => $orderReturn->productCategories->pluck('product_category_id')->toArray(),
             'countries' => Country::all(),
             'states' => State::all(),
             'cities' => City::all(),
             'productCategories' => ProductCategory::all(),
+            'reasonChoices' => OrderReturnReason::all(),
         ]);
     }
 
