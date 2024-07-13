@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use Database\Seeders\Address\Psgc;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -22,6 +23,7 @@ class DatabaseSeeder extends Seeder
             ReturnReasonSeeder::class,
             OrderReturnSeeder::class,
             PhoneCountryCodeSeeder::class,
+            Psgc::class,
         ]);
 
     }
