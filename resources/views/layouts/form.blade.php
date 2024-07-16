@@ -16,6 +16,7 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         {{-- <link rel="stylesheet" href="{{ asset('assets/css/intlTelInput.min.css') }}"> --}}
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@23.3.0/build/css/intlTelInput.css">
+        <link href="{{ asset('assets/css/select2.min.css') }}" rel="stylesheet" />
         @stack('styles')
     </head>
     <body class="font-sans text-gray-900 antialiased">
@@ -42,6 +43,7 @@
     {{-- <script src="{{ asset('assets/js/intlTelInput.min.js') }}"></script> --}}
     <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@23.3.0/build/js/intlTelInput.min.js"></script>
     <script src="{{ asset('assets/js/mask.js') }}"></script>
+    <script src="{{ asset('assets/js/select2.full.min.js') }}"></script>
 
     {{-- Custom --}}
     <script>

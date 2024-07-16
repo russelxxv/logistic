@@ -90,17 +90,7 @@
                     </div>
 
                     <h2 class="text-base font-semibold leading-7 text-gray-900">Address</h2>
-                    <div class="col-span-full">
-                        <label for="street-address" class="block text-sm font-medium leading-6 text-gray-900">Street /
-                            Address Line <span class="text-red-500">*</span></label>
-                        <div class="mt-2">
-                            <input type="text" name="address_line" id="street-address" required
-                                autocomplete="street-address" value="{{ old('address_line') }}"
-                                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                            <x-input-error class="mt-2" :messages="$errors->get('address_line')" />
-                        </div>
-                    </div>
-                    <div class="sm:col-span-2">
+                    <div class="sm:col-span-2 sm:col-start-1">
                         <label for="country" class="block text-sm font-medium leading-6 text-gray-900">Country <span
                                 class="text-red-500">*</span></label>
                         <div class="mt-2">
@@ -108,7 +98,7 @@
                                 class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
                                 <option selected disabled></option>
                                 @foreach ($countries as $country)
-                                    <option value="{{ $country->id }}"
+                                    <option value="{{ $country->id }}" data-code="{{ $country->code }}"
                                         {{ old('country') && $country->id == old('country') ? 'selected' : '' }}>
                                         {{ $country->name }}</option>
                                 @endforeach
@@ -116,11 +106,13 @@
                             <x-input-error class="mt-2" :messages="$errors->get('country')" />
                         </div>
                     </div>
-                    <div class="sm:col-span-2">
+
+                    {{-- Start US Addresses --}}
+                    <div class="sm:col-span-2 us-address hidden">
                         <label for="state" class="block text-sm font-medium leading-6 text-gray-900">State <span
                                 class="text-red-500">*</span></label>
                         <div class="mt-2">
-                            <select id="state" name="state_id" autocomplete="state-name" required
+                            <select id="state" name="state_id" autocomplete="state-name"
                                 class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
                                 <option selected disabled></option>
                                 @foreach ($states as $state)
@@ -130,14 +122,55 @@
                             <x-input-error class="mt-2" :messages="$errors->get('state_id')" />
                         </div>
                     </div>
-                    <div class="sm:col-span-2">
+                    <div class="sm:col-span-2 us-address hidden">
                         <label for="city" class="block text-sm font-medium leading-6 text-gray-900">City <span
                                 class="text-red-500">*</span></label>
                         <div class="mt-2">
-                            <select id="city" name="city_id" autocomplete="city-name" required
+                            <select id="city" name="city_id" autocomplete="city-name"
                                 class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
                             </select>
                             <x-input-error class="mt-2" :messages="$errors->get('city_id')" />
+                        </div>
+                    </div>
+                    {{-- End US Address --}}
+
+                    {{-- Start PH Address --}}
+                    <div class="sm:col-span-2 ph-address hidden">
+                        <label for="region" class="block text-sm font-medium leading-6 text-gray-900">Region <span
+                                class="text-red-500">*</span></label>
+                        <div class="mt-2">
+                            <select id="region" name="region_id" autocomplete="region-name"
+                                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
+                                <option selected disabled></option>
+                                @foreach ($regions as $region)
+                                    <option value="{{ $region->id }}">{{ $region->name }}</option>
+                                @endforeach
+                            </select>
+                            <x-input-error class="mt-2" :messages="$errors->get('region_id')" />
+                        </div>
+                    </div>
+                    <!-- municipalities !-->
+                    <div class="sm:col-span-3 sm:col-start-1 ph-address hidden">
+                        <label for="barangay" class="block text-sm font-medium leading-6 text-gray-900">Barangay / Municipality / City / Province <span
+                                class="text-red-500">*</span></label>
+                        <div class="mt-2">
+                            <select id="barangay" name="barangay_id" autocomplete="barangay-name" width="100%"
+                                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
+                                <option selected disabled></option>
+                            </select>
+                            <x-input-error class="mt-2" :messages="$errors->get('barangay_id')" />
+                        </div>
+                    </div>
+                    {{-- End PH Address --}}
+
+                    <div class="sm:col-span-3 sm:col-start-1">
+                        <label for="street-address" class="block text-sm font-medium leading-6 text-gray-900">Street /
+                            Address Line <span class="text-red-500">*</span></label>
+                        <div class="mt-2">
+                            <input type="text" name="address_line" id="street-address" required
+                                autocomplete="street-address" value="{{ old('address_line') }}"
+                                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                            <x-input-error class="mt-2" :messages="$errors->get('address_line')" />
                         </div>
                     </div>
                     <div class="sm:col-span-2">
@@ -182,10 +215,11 @@
 
     @push('scripts')
         <script>
+            $(document).ready(function() {
             $("#state").change(function() {
                 $('#city').empty()
                 const request = $.ajax({
-                    url: '{{ route('cities.fetch', [], false) }}' + `?state_id=${$(this).val()}`,
+                    url: '{{ route('us-city.fetch', [], false) }}' + `?state_id=${$(this).val()}`,
                     type: 'get',
                     dataType: 'json',
                     headers: {
@@ -233,6 +267,67 @@
             phoneInput.addEventListener('countrychange', function(e) {
                 const iti = intlTelInput.getInstance(e.target);
             })
+
+            // Country event
+            $("#country").change(function() {
+                let countryCode = $(this).find('option:selected').data('code');
+
+                if (countryCode === 'US') {
+                    $(`.us-address`).removeClass('hidden');
+                    $(`.ph-address`).addClass('hidden');
+                } else {
+                    $(`.ph-address`).removeClass('hidden');
+                    $(`.us-address`).addClass('hidden');
+                }
+            })
+
+            $('#barangay').select2({
+                    placeholder: "Enter Municipality, Barangay (ex. Camarines Sur, Bato, Agos)",
+                    minimumInputLength: 5,
+                    allowclear: true,
+                    ajax: {
+                        url: '{{ route('ph.fetch.search_psgc', [], false) }}',
+                        type: "POST",
+                        headers: {
+                            'X-CSRF-TOKEN': app.data.csrf
+                        },
+                        dataType: "json",
+                        delay: 250,
+                        data: function (params) {
+                        return {
+                            term: params.term // search term
+                        };
+                        },
+                        processResults: function (response) {
+                        return {
+                            results: response.data
+                        };
+                        }
+                    }
+                });
+            // Ph Region
+            $('#region').change(function() {
+                const regionId = $(this).val()
+
+                
+                // $('#municipality').empty()
+                // const request = $.ajax({
+                //     // url: '// .//route('ph.fetch.municipalities', [], false)' + `?region_id=${regionId}`,
+                //     type: 'get',
+                //     dataType: 'json',
+                //     headers: {
+                //         'X-CSRF-TOKEN': app.data.csrf
+                //     },
+                // });
+
+                // request.done(function(data) {
+                //     let options = '';
+                //     const municipality = data.data
+
+                //     municipality.forEach(d => $('#municipality').append(`<option value='${d.id}'>${d.name}</option>`));
+                // })
+            })
+        }) // end document ready
         </script>
     @endpush
 </x-form-layout>

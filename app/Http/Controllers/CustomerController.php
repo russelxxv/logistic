@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CustomerRequest;
 use App\Models\Address\Country;
+use App\Models\Address\Ph\PhRegion;
 use App\Models\Address\State;
+use App\Models\Address\Us\UsState;
 use App\Models\Customer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
@@ -17,7 +19,8 @@ class CustomerController extends Controller
     {
         return view('customer.create', [
             'countries' => Country::all(),
-            'states' => State::all(),
+            'states' => UsState::orderBy('name', 'asc')->get(),
+            'regions' => PhRegion::orderBy('name', 'asc')->get(),
         ]);
     }
 
