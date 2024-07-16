@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\User;
 use Database\Seeders\Address\Psgc;
+use Database\Seeders\Address\USAddress;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -17,13 +18,12 @@ class DatabaseSeeder extends Seeder
         $this->call([
             UserSeeder::class,
             CountriesSeeder::class,
-            StatesSeeder::class,
-            CitiesSeeder::class,
             ProductCategorySeeder::class,
             ReturnReasonSeeder::class,
-            OrderReturnSeeder::class,
+            // OrderReturnSeeder::class,
             PhoneCountryCodeSeeder::class,
             Psgc::class,
+            USAddress::class,
         ]);
 
     }

@@ -2,6 +2,12 @@
 
 namespace App\Models\Address;
 
+use App\Models\Address\Ph\PhBarangay;
+use App\Models\Address\Ph\PhCity;
+use App\Models\Address\Ph\PhMunicipality;
+use App\Models\Address\Ph\PhRegion;
+use App\Models\Address\Us\UsCity;
+use App\Models\Address\Us\UsState;
 use App\Models\Customer;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -36,11 +42,42 @@ class Address extends Model
     }
 
     /**
+     * PH Barangay
+     */
+    public function barangay(): BelongsTo
+    {
+        return $this->belongsTo(PhBarangay::class, 'barangay_id', 'id');
+    }
+
+    /**
+     * PH Municipality
+     */
+    public function municipality(): BelongsTo
+    {
+        return $this->belongsTo(PhMunicipality::class, 'municipality_id', 'id');
+    }
+
+    /**
+     * PH Region
+     */
+    public function region(): BelongsTo
+    {
+        return $this->belongsTo(PhRegion::class, 'region_id', 'id');
+    }
+
+    /**
      * Address is belongs to a City
      */
     public function city(): BelongsTo
     {
-        return $this->belongsTo(City::class);
+        switch($this->counttry->code) {
+            case 'PH':
+                return $this->belongsTo(PhCity::class, 'city_id', 'id');
+            case 'US':
+                return $this->belongsTo(UsCity::class, 'city_id', 'id');
+            default:
+                return null;
+        }
     }
 
     /**
@@ -48,7 +85,7 @@ class Address extends Model
      */
     public function state(): BelongsTo
     {
-        return $this->belongsTo(State::class);
+        return $this->belongsTo(UsState::class, 'state_id', 'id');
     }
 
     /**

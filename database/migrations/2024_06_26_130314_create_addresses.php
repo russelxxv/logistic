@@ -15,8 +15,12 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('customer_id');
             $table->text('address_line')->nullable();
+            $table->unsignedBigInteger('barangay_id')->nullable();
+            $table->unsignedBigInteger('municipality_id')->nullable();
             $table->unsignedBigInteger('city_id')->nullable();
+            $table->unsignedBigInteger('province_id')->nullable();
             $table->unsignedBigInteger('state_id')->nullable();
+            $table->unsignedBigInteger('region_id')->nullable();
             $table->unsignedBigInteger('country_id')->nullable();
             $table->string('postal_code')->nullable();
             $table->timestamps();
