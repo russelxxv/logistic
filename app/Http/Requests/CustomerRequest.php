@@ -49,8 +49,10 @@ class CustomerRequest extends FormRequest
             ],
             'country_code' => ['required', 'string'],
             'email' => ['required', 'email', 'unique:customers,email'],
-            'city_id' => ['required', 'exists:cities,id'],
-            'state_id' => ['required', 'exists:states,id'],
+            'city_id' => ['nullable', 'integer'],
+            'state_id' => ['nullable', 'exists:us_states,id'],
+            'barangay_id' => ['nullable', 'exists:ph_barangays,id'],
+            'region_id' => ['nullable', 'exists:ph_regions,id'],
             'postal_code' => ['required', new DbVarcharMaxLength()],
             'address_line' => ['required', 'string'],
             'country' => ['required', 'exists:countries,id']

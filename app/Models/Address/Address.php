@@ -24,6 +24,8 @@ class Address extends Model
         'state_id',
         'country_id',
         'postal_code',
+        'barangay_id',
+        'region_id',
     ];
 
     protected $hidden = ['deleted_at', 'created_at', 'updated_at'];

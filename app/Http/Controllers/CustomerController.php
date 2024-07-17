@@ -41,11 +41,13 @@ class CustomerController extends Controller
 
         // store address binded with customer_id
         $address = $customer->address()->create([
-            'city_id' => $data['city_id'],
-            'state_id' => $data['state_id'],
+            'city_id' => $data['city_id'] ?? null,
+            'state_id' => $data['state_id'] ?? null,
             'postal_code' => $data['postal_code'],
             'address_line' => $data['address_line'],
             'country_id' => $data['country'],
+            'barangay_id' => $data['barangay_id'] ?? null,
+            'region_id' => $data['region_id'] ?? null,
         ]);
 
         Session::flash('customer.created', 'Customer created');
