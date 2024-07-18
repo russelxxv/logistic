@@ -16,7 +16,8 @@ class UnknownClient
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (Session::missing('unknown_client')) {
+        if (Session::missing('unknown_client') || Session::get('unknown_client') === null) {
+            // $controller = $request->route()->
             return redirect()->route('verify.index');
         }
 

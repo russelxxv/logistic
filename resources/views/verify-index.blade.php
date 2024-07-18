@@ -9,19 +9,13 @@
             <div class="rounded-t mb-0 px-6 py-6">
                 <div class="text-center mb-3">
                     <h6 class="leading-normal text-lg font-bold capitalize">
-                        {{-- {{ config('app.name') }} --}}
                         Before you continue we need to check your email.
                     </h6>
                 </div>
-                {{-- <div class="btn-wrapper text-center">
-                    <h2 class="text-2xl leading-normal mt-0 mb-2 text-blueGray-600 font-bold">
-                        Before you continue pls verify your email below
-                    </h2>
-                </div> --}}
                 <hr class="mt-6 border-b-1 border-blueGray-300" />
             </div>
             <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
-                <form method="POST" action="{{ route('verify.email') }}">
+                <form method="POST" action="{{ route('verify.customer-email') }}">
                     @csrf
                     {{-- Email --}}
                     <div class="relative w-full mb-3">

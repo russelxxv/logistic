@@ -55,6 +55,7 @@ class OrderReturnController extends Controller
     public function closeSession()
     {
         Session::forget('customer');
+        Session::forget('unknown_client');
         Session::save();
 
         return redirect()->route('customer.create');
