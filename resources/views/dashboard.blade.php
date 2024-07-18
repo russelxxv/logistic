@@ -1,25 +1,10 @@
 <x-admin-app-layout>
-
-    {{-- Card statuses --}}
-    <x-slot name="card_status">
-        <x-admin.card-status />
-    </x-slot>
-
-    <div class="flex flex-wrap mt-4">
+    <div class="flex flex-wrap">
         <div class="w-full mb-12 px-4">
             <div class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded bg-white">
                 <div class="rounded-t mb-0 px-4 py-3 border-0">
-                    <div class="flex flex-wrap items-center">
-                        <div class="relative w-full px-4 max-w-full flex-grow flex-1">
-                            <h3 class="font-semibold text-lg text-blueGray-700">
-                                LIST
-                            </h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="rounded-t mb-0 px-4 py-3 border-0">
                     @session('export.done')
-                        <div class="text-white px-6 py-4 border-0 rounded relative mb-4 bg-amber-500">
+                        <div class="text-white px-6 py-4 border-0 rounded relative mb-4 bg-green-600">
                             <span class="text-xl inline-block mr-5 align-middle">
                                 <i class="fas fa-check"></i>
                             </span>
@@ -33,90 +18,50 @@
                         </div>
                     @endsession
                 </div>
-                <div class="block w-full overflow-x-auto">
+                <div class="block w-full overflow-x-auto h-full px-2">
                     <!-- Projects table -->
-                    <table class="items-center w-full bg-transparent border-collapse">
+                    <table class="items-center w-full bg-transparent border-collapse" id="table-order">
                         <thead>
                             <tr>
                                 <th
-                                    class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-center bg-blueGray-50 text-blueGray-500 border-blueGray-100">
+                                    class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-center bg-blueGray-50 text-green-700 border-blueGray-100">
                                     <i class="fas fa-tools"></i>
                                 </th>
                                 <th
-                                    class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">
+                                    class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-green-700 border-blueGray-100">
                                     Status
                                 </th>
                                 <th
-                                    class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">
+                                    class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-green-700 border-blueGray-100">
                                     Order Number
                                 </th>
                                 <th
-                                    class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">
+                                    class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-green-700 border-blueGray-100">
                                     Customer
                                 </th>
                                 <th
-                                    class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">
+                                    class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-green-700 border-blueGray-100">
                                     Retailer Name
                                 </th>
                                 <th
-                                    class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">
+                                    class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-green-700 border-blueGray-100">
                                     Phone
                                 </th>
                                 <th
-                                    class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">
+                                    class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-green-700 border-blueGray-100">
                                     Email
                                 </th>
                                 <th
-                                    class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">
+                                    class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-green-700 border-blueGray-100">
                                     Address
                                 </th>
                                 <th
-                                    class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">
+                                    class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-green-700 border-blueGray-100">
                                     Reason for return
                                 </th>
                                 <th
-                                    class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">
+                                    class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-green-700 border-blueGray-100">
                                     Date Created
-                                </th>
-                            </tr>
-                            <tr>
-                                <th
-                                    class="align-middle border border-solid text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-center bg-blueGray-50 text-blueGray-500 border-blueGray-100">
-                                    <button
-                                        class="bg-amber-500 text-white active:bg-amber-400 hover:bg-amber-400 font-bold uppercase text-xs p-2 rounded shadow hover:shadow-md outline-none focus:outline-none ease-linear transition-all duration-150"
-                                        type="button" id="btn-apply-filter">
-                                        <i class="fa fa-search"></i>
-                                    </button>
-                                </th>
-                                <th
-                                    class="align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">
-                                    <select id="filter_status" name="filter_status" required
-                                        class="block w-full text-xs rounded-md border-0 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-amber-600">
-                                        <option selected disabled>- Status -</option>
-                                        <option value="{{ $statuses['new'] }}" {{ request('filter_status') == 'new' ? 'selected': '' }}>{{ $statuses['new'] }}</option>
-                                        <option value="{{ $statuses['received'] }}" {{ request('filter_status') == 'received' ? 'selected': '' }}>{{ $statuses['received'] }}</option>
-                                    </select>
-                                </th>
-                                <th
-                                    class="px-3 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100"></th>
-                                <th
-                                    class="px-3 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100"></th>
-                                <th
-                                    class="px-3 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100"></th>
-                                <th
-                                    class="align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">
-                                    <input type="text" id="filter_phone" name="filter_phone"
-                                        class="border-0 border-amber-400 py-2 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-xs shadow focus:outline-none focus:ring ring-amber-400 w-full ease-linear transition-all duration-150"
-                                        placeholder="Phone" value="{{ request('filter_phone') }}" />
-                                </th>
-                                <th
-                                    class="px-3 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100"></th>
-                                <th
-                                    class="px-3 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100"></th>
-                                <th
-                                    class="px-3 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100"></th>
-                                <th
-                                    class="px-3 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">
                                 </th>
                             </tr>
                         </thead>
@@ -140,12 +85,10 @@
                                         <i class="fas fa-circle text-emerald-500 mr-2"></i>
                                         {{ $order->status }}
                                     </td>
-                                    <th
-                                        class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left flex items-center">
-                                        <span class="ml-3 font-bold text-blueGray-600">
-                                            {{ $order->order_number }}
-                                        </span>
-                                    </th>
+                                    <td
+                                        class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                        {{ $order->order_number }}
+                                    </td>
                                     <td
                                         class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                                         {{ $order->customer->full_name }}
@@ -183,62 +126,10 @@
                     <div class="flex flex-wrap items-center">
                         <div class="relative w-full px-4 max-w-full flex-grow flex-1">
                             <a href="{{ route('manage-order-return.export') }}"
-                                class="bg-amber-500 text-white active:bg-amber-400 hover:bg-amber-400 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                                class="bg-green-700 text-white active:bg-green-400 hover:bg-green-400 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button">
                                 <i class="fa fa-download"></i> Download
                             </a>
-                        </div>
-                    </div>
-                    <div class="grid justify-items-end">
-                        <div class="py-2">
-                            {{ $order_returns->links() }}
-                            {{-- <nav class="block">
-                                <ul class="flex pl-0 rounded list-none flex-wrap">
-                                    <li>
-                                        <a href="#pablo"
-                                            class="first:ml-0 text-xs font-semibold flex w-8 h-8 mx-1 p-0 rounded-full items-center justify-center leading-tight relative border border-solid border-amber-500 bg-white text-amber-500">
-                                            <i class="fas fa-chevron-left -ml-px"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#pablo"
-                                            class="first:ml-0 text-xs font-semibold flex w-8 h-8 mx-1 p-0 rounded-full items-center justify-center leading-tight relative border border-solid border-amber-500 text-white bg-amber-500">
-                                            1
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#pablo"
-                                            class="first:ml-0 text-xs font-semibold flex w-8 h-8 mx-1 p-0 rounded-full items-center justify-center leading-tight relative border border-solid border-amber-500 bg-white text-amber-500">
-                                            2
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#pablo"
-                                            class="first:ml-0 text-xs font-semibold flex w-8 h-8 mx-1 p-0 rounded-full items-center justify-center leading-tight relative border border-solid border-amber-500 bg-white text-amber-500">
-                                            3
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#pablo"
-                                            class="first:ml-0 text-xs font-semibold flex w-8 h-8 mx-1 p-0 rounded-full items-center justify-center leading-tight relative border border-solid border-amber-500 bg-white text-amber-500">
-                                            4
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#pablo"
-                                            class="first:ml-0 text-xs font-semibold flex w-8 h-8 mx-1 p-0 rounded-full items-center justify-center leading-tight relative border border-solid border-amber-500 bg-white text-amber-500">
-                                            5
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#pablo"
-                                            class="first:ml-0 text-xs font-semibold flex w-8 h-8 mx-1 p-0 rounded-full items-center justify-center leading-tight relative border border-solid border-amber-500 bg-white text-amber-500">
-                                            <i class="fas fa-chevron-right -mr-px"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </nav> --}}
-                        </div>
                         </div>
                     </div>
                 </div>
@@ -260,6 +151,10 @@
                     url = `${url}?filter_phone=${filter_phone}&filter_status=${filter_status}`
 
                     window.location.href = url
+                })
+
+                $(document).ready(function() {
+                    $("#table-order").DataTable();
                 })
             </script>
         @endpush

@@ -47,7 +47,7 @@ services:
       - APP_ENV=${APP_ENV}
       - CONTAINER_ROLE=queue
     working_dir: /var/www/app-source
-    command: php artisan queue:work redis --queue=default,emails,notifications,listeners
+    command: php artisan queue:work --queue=default,emails,notifications,listeners
     volumes:
       - ./:/var/www/app-source
     depends_on:

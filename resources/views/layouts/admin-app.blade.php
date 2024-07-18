@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css" />
     <link rel="stylesheet" href="{{ asset('assets/vendor/@fortawesome/fontawesome-free/css/all.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/styles/tailwind.css') }}" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.8/css/dataTables.dataTables.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
@@ -47,11 +48,16 @@
                             onclick="openDropdown(event,'notification-dropdown')"><i class="fas fa-bell"></i></a>
                         <div class="hidden bg-white text-base z-50 float-left py-2 list-none text-left rounded shadow-lg min-w-48"
                             id="notification-dropdown">
-                            <a href="#pablo"
+                            <a href="{{ route('profile.edit') }}"
                                 class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700">Profile</a>
                             <div class="h-0 my-2 border border-solid border-blueGray-100"></div>
-                            <a href="#pablo"
-                                class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700">Logout</a>
+                            <!-- Authentication -->
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <a href="#"
+                                    class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
+                                    onclick="event.preventDefault(); this.closest('form').submit();">Logout</a>
+                            </form>
                         </div>
                     </li>
                     <li class="inline-block relative">
@@ -60,17 +66,22 @@
                             <div class="items-center flex">
                                 <span
                                     class="w-12 h-12 text-sm text-white bg-blueGray-200 inline-flex items-center justify-center rounded-full"><img
-                                        alt="..." class="w-full rounded-full align-middle border-none shadow-lg"
-                                        src="../../assets/img/team-1-800x800.jpg" /></span>
+                                        alt="profile-avatar" class="w-full rounded-full align-middle border-none shadow-lg"
+                                        src="{{ asset('assets/img/avatar_default.jpg') }}" /></span>
                             </div>
                         </a>
                         <div class="hidden bg-white text-base z-50 float-left py-2 list-none text-left rounded shadow-lg min-w-48"
                             id="user-responsive-dropdown">
-                            <a href="#pablo"
+                            <a href="{{ route('profile.edit') }}"
                                 class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700">Profile</a>
                             <div class="h-0 my-2 border border-solid border-blueGray-100"></div>
-                            <a href="#pablo"
-                                class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700">Logout</a>
+                            <!-- Authentication -->
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <a href="#"
+                                    class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
+                                    onclick="event.preventDefault(); this.closest('form').submit();">Logout</a>
+                            </form>
                         </div>
                     </li>
                 </ul>
@@ -81,7 +92,7 @@
                             <div class="w-6/12">
                                 <a class="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
                                     href="#">
-                                    OORS
+                                    {{ config('app.name') }}
                                 </a>
                             </div>
                             <div class="w-6/12 flex justify-end">
@@ -101,39 +112,16 @@
                     </form>
                     <!-- Divider -->
                     <hr class="my-4 md:min-w-full" />
-                    <!-- Heading -->
-                    <h6
-                        class="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
-                        Pages
-                    </h6>
-                    <!-- Navigation -->
 
                     <ul class="md:flex-col md:min-w-full flex flex-col list-none">
                         <li class="items-center">
                             <a href="{{ route('dashboard') }}"
-                                class="text-xs uppercase py-3 font-bold block text-amber-500 hover:text-amber-600">
+                                class="text-xs uppercase py-3 font-bold block text-green-700 hover:text-green-600">
                                 <i class="fas fa-table mr-2 text-sm opacity-75"></i>
                                 Dashboard
                             </a>
                         </li>
-
-                        {{-- <li class="items-center">
-                            <a href="./maps.html"
-                                class="text-xs uppercase py-3 font-bold block text-blueGray-700 hover:text-blueGray-500">
-                                <i class="fas fa-map-marked mr-2 text-sm text-blueGray-300"></i>
-                                Maps
-                            </a>
-                        </li> --}}
                     </ul>
-
-                    <!-- Divider -->
-                    <hr class="my-4 md:min-w-full" />
-                    <!-- Heading -->
-                    <h6
-                        class="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
-                        More Pages
-                    </h6>
-
                 </div>
             </div>
         </nav>
@@ -146,23 +134,14 @@
                 class="absolute top-0 left-0 w-full z-10 bg-transparent md:flex-row md:flex-nowrap md:justify-start flex items-center p-4">
                 <div class="w-full mx-autp items-center flex justify-between md:flex-nowrap flex-wrap md:px-10 px-4">
                     <a class="text-white text-sm uppercase hidden lg:inline-block font-semibold"
-                        href="#">Dashboard</a>
-                    <form class="md:flex hidden flex-row flex-wrap items-center lg:ml-auto mr-3">
-                        <div class="relative flex w-full flex-wrap items-stretch">
-                            <span
-                                class="z-10 h-full leading-snug font-normal absolute text-center text-blueGray-300 bg-transparent rounded text-base items-center justify-center w-8 pl-3 py-3"><i
-                                    class="fas fa-search"></i></span>
-                            <input type="text" placeholder="Search here..."
-                                class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 relative bg-white rounded text-sm shadow outline-none focus:outline-none focus:ring w-full pl-10" />
-                        </div>
-                    </form>
+                        href="#">Order Return List</a>
                     <ul class="flex-col md:flex-row list-none items-center hidden md:flex">
                         <a class="text-blueGray-500 block" href="#pablo" onclick="openDropdown(event,'user-dropdown')">
                             <div class="items-center flex">
                                 <span
                                     class="w-12 h-12 text-sm text-white bg-blueGray-200 inline-flex items-center justify-center rounded-full"><img
-                                        alt="..." class="w-full rounded-full align-middle border-none shadow-lg"
-                                        src="../../assets/img/team-1-800x800.jpg" /></span>
+                                        alt="profile-avatar" class="w-full rounded-full align-middle border-none shadow-lg"
+                                        src="{{ asset('assets/img/avatar_default.jpg') }}" /></span>
                             </div>
                         </a>
                         <div class="hidden bg-white text-base z-50 float-left py-2 list-none text-left rounded shadow-lg min-w-48"
@@ -184,8 +163,8 @@
             <!-- end top navigation -->
 
             <!-- start header and charts -->
-            <div class="relative bg-amber-600 md:pt-32 pb-32 pt-12">
-                <div class="px-4 md:px-10 mx-auto w-full">
+            <div class="relative bg-green-700 pb-24 pt-8">
+                <div class="px-4 md:px-5 mx-auto w-full">
                     @isset($card_status)
                         {{ $card_status }}
                     @endisset
@@ -194,20 +173,8 @@
             <!-- end header and charts -->
 
             <!-- start main content -->
-            <div class="px-4 md:px-10 mx-auto w-full -m-24">
+            <div class="px-1 mx-auto w-full -m-10">
                 {{ $slot }}
-                <footer class="block py-4">
-                    <div class="px-4">
-                        <hr class="mb-4 border-b-1 border-blueGray-200" />
-                        <div class="flex flex-wrap items-center md:justify-between justify-center">
-                            <div class="w-full md:w-4/12 px-4">
-                                <div class="text-sm text-blueGray-500 font-semibold py-1 text-center md:text-left">
-                                    Copyright © <span id="get-current-year"></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </footer>
             </div>
             <!-- end main content -->
         </div>
@@ -216,6 +183,7 @@
 </body>
 <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.js" charset="utf-8"></script>
 <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
+<script src="https://cdn.datatables.net/2.0.8/js/dataTables.min.js"></script>
 <script src="{{ asset('assets/js/mask.js') }}"></script>
 <script type="text/javascript">
     var app = app || {};

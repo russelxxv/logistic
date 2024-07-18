@@ -33,7 +33,7 @@ class Address extends Model
     /**
      * The relationships to eager-load
      */
-    protected $with = ['city', 'state', 'country'];
+    protected $with = ['state', 'country'];
 
     /**
      * Address is belongs to a customer
@@ -72,7 +72,8 @@ class Address extends Model
      */
     public function city(): BelongsTo
     {
-        switch($this->counttry->code) {
+        // dd($this->counttry());
+        switch($this->country->code) {
             case 'PH':
                 return $this->belongsTo(PhCity::class, 'city_id', 'id');
             case 'US':
