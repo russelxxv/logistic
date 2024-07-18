@@ -8,10 +8,9 @@ use Illuminate\Http\Request;
 use Illuminate\View\View;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ManageOrderReturnRequest;
-use App\Models\Address\City;
 use App\Models\Address\Country;
-use App\Models\Address\State;
-use App\Models\OrderReturnProductCategory;
+use App\Models\Address\Us\UsCity;
+use App\Models\Address\Us\UsState;
 use App\Models\OrderReturnReason;
 use App\Models\ProductCategory;
 use Illuminate\Support\Facades\Session;
@@ -52,8 +51,8 @@ class ManageOrderReturnController extends Controller
             'order_return' => $orderReturn,
             'selectedProducts' => $orderReturn->productCategories->pluck('product_category_id')->toArray(),
             'countries' => Country::all(),
-            'states' => State::all(),
-            'cities' => City::all(),
+            'us_states' => UsState::all(),
+            'us_cities' => UsCity::all(),
             'productCategories' => ProductCategory::all(),
             'reasonChoices' => OrderReturnReason::all(),
         ]);

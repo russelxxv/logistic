@@ -211,7 +211,7 @@
                                     <select id="state" name="state" required
                                         class="block w-full rounded-md border-0 px-3 py-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-amber-600">
                                         <option selected disabled></option>
-                                        @foreach ($states as $state)
+                                        @foreach ($us_states as $state)
                                             <option value="{{ $state->id }}"
                                                 {{ $state->id == $order_return->customer->address->state_id ? 'selected' : '' }}>
                                                 {{ $state->name }}
@@ -229,7 +229,7 @@
                                     <select id="city" name="city" required
                                         class="block w-full rounded-md border-0 px-3 py-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-amber-600">
                                         <option selected disabled></option>
-                                        @foreach ($cities as $city)
+                                        @foreach ($us_cities as $city)
                                             <option value="{{ $city->id }}"
                                                 {{ $city->id == $order_return->customer->address->city_id ? 'selected' : '' }}>
                                                 {{ $city->name }}
