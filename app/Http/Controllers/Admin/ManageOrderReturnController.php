@@ -32,7 +32,8 @@ class ManageOrderReturnController extends Controller
             $query->orWhere('customers.phone', 'like', '%'.$request->filter_phone.'%');
         }
 
-        $paginate = $query->paginate(10);
+        // $paginate = $query->paginate(10);
+        $paginate = $query->get();
         
         return view('dashboard', [
             'order_returns' => $paginate,
