@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\CreatedOrderReturn;
 use App\Http\Requests\OrderReturnRequest;
 use App\Models\OrderReturn;
 use App\Models\OrderReturnItem;
@@ -43,6 +44,8 @@ class OrderReturnController extends Controller
         }
         
         Session::flash('order_return.created', 'Return Order Created');
+
+        CreatedOrderReturn::dispatch($orderReturn);
 
         return redirect()->route('order-return.created');
     }

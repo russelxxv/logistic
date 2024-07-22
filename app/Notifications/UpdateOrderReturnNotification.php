@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class CreatedOrderReturnNotification extends Notification implements ShouldQueue
+class UpdateOrderReturnNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
@@ -29,24 +29,11 @@ class CreatedOrderReturnNotification extends Notification implements ShouldQueue
         $appName = config('app.name');
         $customerName = $notifiable->customer->full_name;
 
-        return (new MailMessage())
-                    ->subject('Bravo Zulu - Return of Order')
+        return (new MailMessage)
+                    ->subject("Bravo Zulu - {$notifiable->status} - Return of Order")
                     ->greeting('HI! '.$customerName)
-                    ->line('You\'ve requested an Order Return. Please kindly wait for us to review and take action.')
-                    ->line('we will send another email to update you.')
+                    ->line('We have received your Order Return.')
                     // ->action('Notification Action', url('/'))
                     ->line('Thank you for using our application!');
-    }
-
-    /**
-     * Get the array representation of the notification.
-     *
-     * @return array<string, mixed>
-     */
-    public function toArray(object $notifiable): array
-    {
-        return [
-            //
-        ];
     }
 }

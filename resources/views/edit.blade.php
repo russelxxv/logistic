@@ -386,7 +386,7 @@
             $("#state").change(function() {
                 $('#city').empty()
                 const request = $.ajax({
-                    url: '{{ route('cities.fetch', [], false) }}' + `?state_id=${$(this).val()}`,
+                    url: '' + `?state_id=${$(this).val()}`,
                     type: 'get',
                     dataType: 'json',
                     headers: {
@@ -453,14 +453,6 @@
                         }
                     },
                     allowOutsideClick: () => !Swal.isLoading()
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        Swal.fire({
-                            title: "Deleted!",
-                            text: "Your file has been deleted.",
-                            icon: "success"
-                        });
-                    }
                 });
             })
             // end receive

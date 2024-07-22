@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Enums\ReturnOrderStatus;
+use App\Events\UpdateOrderReturn;
 use App\Models\OrderReturn;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -72,6 +73,8 @@ class ManageOrderReturnController extends Controller
         $order->update([
             'status' => ReturnOrderStatus::RECEIVED->value,
         ]);
+
+        UpdateOrderReturn::dispatch($order);
 
         Session::flash('order.status', 'Order Status Updated');
         return redirect()->back();

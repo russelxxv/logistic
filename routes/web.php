@@ -1,6 +1,7 @@
 <?php
 
 use App\Events\CreatedOrderReturn;
+use App\Events\UpdateOrderReturn;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TestController;
 use App\Models\OrderReturn;
@@ -15,10 +16,11 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/test', function() {
     // return dd('nani');
-    return CreatedOrderReturn::dispatch(OrderReturn::where('id', 2)->get()->first());
-    // Session::forget('customer');
-    // Session::forget('unknown_client');
-    // Session::save();
+    // return CreatedOrderReturn::dispatch(OrderReturn::where('id', 1)->get()->first());
+    // return UpdateOrderReturn::dispatch(OrderReturn::where('id', 1)->get()->first());
+    Session::forget('customer');
+    Session::forget('unknown_client');
+    Session::save();
 });
 
 require __DIR__.'/auth.php';
