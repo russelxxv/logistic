@@ -70,15 +70,9 @@
                                 <tr>
                                     <td
                                         class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4 text-right">
-                                        <a href="#pablo" class="text-blueGray-500 block py-1 px-3"
-                                            onclick="openDropdown(event,'table-order-{{ $order->id }}')">
-                                            <i class="fas fa-ellipsis-v"></i>
+                                        <a href="{{ route('manage-order-return.edit', ['id' => $order->id], false) }}" class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700 hover:text-green-500">
+                                            <i class="fa fa-pen-square text-green-400 hover:text-green-600"></i> <span class="text-xs">EDIT</span>
                                         </a>
-                                        <div class="hidden bg-white text-base z-50 float-left py-2 list-none text-left rounded shadow-lg min-w-48 hover:bg-gray-100"
-                                            id="table-order-{{ $order->id }}">
-                                            <a href="{{ route('manage-order-return.edit', ['id' => $order->id], false) }}"
-                                                class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700 hover:text-amber-500">View</a>
-                                        </div>
                                     </td>
                                     <td
                                         class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4">
