@@ -9,10 +9,12 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Notifications\Notifiable;
 
 class OrderReturn extends Model
 {
     use HasFactory;
+    use Notifiable;
 
     protected $fillable = [
         'order_number',
@@ -64,5 +66,11 @@ class OrderReturn extends Model
     protected function status(): CastsAttribute
     {
         return CastsAttribute::get(fn ($value) => ucwords($value));
+    }
+
+    public function routeNotificationForMail($notification)
+    {
+        // dd($notification);
+        return $this->customer->email;
     }
 }
