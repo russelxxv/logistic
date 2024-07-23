@@ -58,6 +58,9 @@ class CustomerController extends Controller
 
     public function customer()
     {
-        return view('customer.index');
+        return view('customer.index', [
+            'countries' => Country::all(),
+            'states' => UsState::orderBy('name', 'asc')->get(),
+        ]);
     }
 }
