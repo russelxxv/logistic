@@ -7,3 +7,5 @@ Route::middleware(['unknown_client', 'guest'])->prefix('/customer')->controller(
     Route::get('create', 'create')->name('create');
     Route::post('store', 'store')->name('store');
 });
+
+Route::get('/cus', [CustomerController::class, 'customer']);

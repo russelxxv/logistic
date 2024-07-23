@@ -55,4 +55,9 @@ class CustomerController extends Controller
 
         return redirect()->route('order-return.index');
     }
+
+    public function customer()
+    {
+        return view('customer.index');
+    }
 }
