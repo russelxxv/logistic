@@ -17,10 +17,15 @@ class CustomerController extends Controller
 {
     public function create(): View
     {
-        return view('customer.create', [
+        // return view('customer.create', [
+        //     'countries' => Country::all(),
+        //     'states' => UsState::orderBy('name', 'asc')->get(),
+        //     'regions' => PhRegion::orderBy('name', 'asc')->get(),
+        // ]);
+
+        return view('customer.index', [
             'countries' => Country::all(),
             'states' => UsState::orderBy('name', 'asc')->get(),
-            'regions' => PhRegion::orderBy('name', 'asc')->get(),
         ]);
     }
 
@@ -56,11 +61,11 @@ class CustomerController extends Controller
         return redirect()->route('order-return.index');
     }
 
-    public function customer()
-    {
-        return view('customer.index', [
-            'countries' => Country::all(),
-            'states' => UsState::orderBy('name', 'asc')->get(),
-        ]);
-    }
+    // public function customer()
+    // {
+    //     return view('customer.index', [
+    //         'countries' => Country::all(),
+    //         'states' => UsState::orderBy('name', 'asc')->get(),
+    //     ]);
+    // }
 }

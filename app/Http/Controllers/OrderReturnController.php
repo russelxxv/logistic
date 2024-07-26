@@ -63,4 +63,12 @@ class OrderReturnController extends Controller
 
         return redirect()->route('customer.create');
     }
+
+    // public function order()
+    // {
+    //     return view('order-return.index-new', [
+    //         'productCategories' => ProductCategory::all(),
+    //         'reasons' => OrderReturnReason::all(),
+    //     ]);
+    // }
 }

@@ -13,14 +13,15 @@
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
     <!-- Scripts -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tw-elements/css/tw-elements.min.css" />
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+
     <!-- notus theme -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css" />
     <link rel="stylesheet" href="{{ asset('assets/vendor/@fortawesome/fontawesome-free/css/all.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/styles/tailwind.css') }}" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@23.3.0/build/css/intlTelInput.css">
+    <link href="{{ asset('assets/css/select2.min.css') }}" rel="stylesheet" />
     <style>
         .iti.iti--allow-dropdown {
             width: 100% !important;
@@ -78,9 +79,8 @@
                                         </a>
                                     </li>
                                     <li class="-mb-px mr-2 last:mr-0 flex-auto text-center">
-                                        <a class="text-xs font-bold uppercase px-5 py-3 shadow-lg rounded block leading-normal text-green-600 bg-white cursor-pointer"
-                                            data-tab-toggle="tab-order-details"
-                                            onclick="changeAtiveTab(event,'wrapper-for-text-green','green','tab-order-details')">
+                                        <a class="text-xs font-bold uppercase px-5 py-3 shadow-lg rounded block leading-normal text-green-600 bg-white cursor-not-allowed"
+                                            data-tab-toggle="tab-order-details">
                                             2. Order Return Details
                                         </a>
                                     </li>
@@ -93,7 +93,15 @@
 
                                             {{-- Customer Details --}}
                                             <div class="block" data-tab-content="true" id="tab-customer-details">
-                                                <form method="post" action="{{ route('customer.store', [], false) }}">
+                                                @if ($errors->any())
+                                                    <div class="bg-red-100 border-l-4 border-red-500 text-orange-700 p-4"
+                                                        role="alert">
+                                                        <p class="font-bold">Form Invalid</p>
+                                                        <p>Something invalid in your form.</p>
+                                                    </div>
+                                                @endif
+                                                <form method="post" action="{{ route('customer.store', [], false) }}"
+                                                    name="form-create-customer" enctype="multipart/form-data">
                                                     @csrf
                                                     <h2 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
                                                         Personal Information</h2>
@@ -106,8 +114,9 @@
                                                                     First Name <span class="text-red-500">*</span>
                                                                 </label>
                                                                 <input type="text" required
-                                                                    class="px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:ring-green-400 active:ring-green-400 w-full ease-linear transition-all duration-150"
-                                                                    value="" name="first_name" id="first_name" />
+                                                                    class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                                                    value="{{ old('first_name') }}" name="first_name"
+                                                                    id="first_name" />
                                                                 <x-input-error class="mt-2" :messages="$errors->get('first_name')" />
                                                             </div>
                                                         </div>
@@ -120,7 +129,8 @@
                                                                 </label>
                                                                 <input type="text" required
                                                                     class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                                                                    name="last_name" id="last_name" value="" />
+                                                                    name="last_name" id="last_name"
+                                                                    value="{{ old('last_name') }}" />
                                                                 <x-input-error class="mt-2" :messages="$errors->get('last_name')" />
                                                             </div>
                                                         </div>
@@ -133,7 +143,7 @@
                                                                 </label>
                                                                 <input type="text"
                                                                     class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                                                                    value="" name="middle_name"
+                                                                    value="{{ old('middle_name') }}" name="middle_name"
                                                                     id="middle_name" />
                                                                 <x-input-error class="mt-2" :messages="$errors->get('middle_name')" />
                                                             </div>
@@ -147,7 +157,8 @@
                                                                 </label>
                                                                 <input type="email" required
                                                                     class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                                                                    value="" name="email" id="email" />
+                                                                    value="{{ old('email') }}" name="email"
+                                                                    id="email" />
                                                                 <x-input-error class="mt-2" :messages="$errors->get('email')" />
                                                             </div>
                                                         </div>
@@ -162,6 +173,8 @@
                                                                     class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                                                                     value="" name="phone" id="phone" />
                                                                 <x-input-error class="mt-2" :messages="$errors->get('phone')" />
+                                                                <x-input-error class="mt-2" :messages="$errors->get('phone_full')" />
+                                                                <x-input-error class="mt-2" :messages="$errors->get('country_code')" />
                                                             </div>
                                                         </div>
                                                         <div class="w-full lg:w-6/12 px-4">
@@ -176,8 +189,8 @@
                                                                 </label>
                                                                 <input type="text"
                                                                     class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                                                                    value="" name="retailer_name"
-                                                                    id="retailer_name" />
+                                                                    value="{{ old('retailer_name') }}"
+                                                                    name="retailer_name" id="retailer_name" />
                                                                 <x-input-error class="mt-2" :messages="$errors->get('retailer_name')" />
                                                             </div>
                                                         </div>
@@ -201,12 +214,16 @@
                                                                     class="block w-full rounded-md border-0 px-3 py-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-green-600">
                                                                     <option selected disabled></option>
                                                                     @foreach ($countries as $country)
-                                                                        <option value="{{ $country->id }}" data-code="{{ $country->code }}">
+                                                                        <option value="{{ $country->id }}"
+                                                                            data-code="{{ $country->code }}"
+                                                                            {{ old('country') && $country->id == old('country') ? 'selected' : '' }}>
                                                                             {{ $country->name }}</option>
                                                                     @endforeach
                                                                 </select>
+                                                                <x-input-error class="mt-2" :messages="$errors->get('country')" />
                                                             </div>
                                                         </div>
+                                                        <div class="w-full lg:w-8/12 px-4" id="country-offset"></div>
 
                                                         {{-- State & City --}}
                                                         <div class="w-full lg:w-4/12 px-4 us-address hidden">
@@ -216,7 +233,7 @@
                                                                     for="State">
                                                                     States <span class="text-red-500">*</span>
                                                                 </label>
-                                                                <select id="state" name="state_id" required
+                                                                <select id="state" name="state_id"
                                                                     class="block w-full rounded-md border-0 px-3 py-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-green-600">
                                                                     <option selected disabled></option>
                                                                     @foreach ($states as $state)
@@ -224,6 +241,7 @@
                                                                             {{ $state->name }}</option>
                                                                     @endforeach
                                                                 </select>
+                                                                <x-input-error class="mt-2" :messages="$errors->get('state_id')" />
                                                             </div>
                                                         </div>
                                                         <div class="w-full lg:w-4/12 px-4 us-address hidden">
@@ -233,42 +251,74 @@
                                                                     for="city">
                                                                     City <span class="text-red-500">*</span>
                                                                 </label>
-                                                                <select id="city" name="city_id" required
+                                                                <select id="city" name="city_id"
                                                                     class="block w-full rounded-md border-0 px-3 py-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-green-600">
                                                                 </select>
+                                                                <x-input-error class="mt-2" :messages="$errors->get('city_id')" />
                                                             </div>
                                                         </div>
-
                                                         {{-- ./ State & City --}}
-                                                    </div>
 
-                                                    <div class="w-full px-4 mt-1">
+                                                        {{-- Start PH Address --}}
+                                                        <div class="w-full lg:w-8/12 px-4 ph-address hidden">
+                                                            <div class="relative w-full mb-3">
+                                                                <label
+                                                                    class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                                                                    for="barangay">
+                                                                    Barangay / Municipality / City / Province / Region
+                                                                    <span class="text-red-500">*</span>
+                                                                </label>
+                                                                <select id="barangay" name="barangay_id"
+                                                                    width="100%"
+                                                                    class="block w-full rounded-md border-0 px-3 py-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-green-600">
+                                                                </select>
+                                                                <x-input-error class="mt-2" :messages="$errors->get('barangay_id')" />
+                                                            </div>
+                                                        </div>
+                                                        {{-- End PH Address --}}
+
+                                                        {{-- Address Line and Postal code --}}
+                                                        <div class="w-full lg:w-8/12 px-4">
+                                                            <div class="relative w-full mb-3">
+                                                                <label
+                                                                    class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                                                                    for="address_line">
+                                                                    Address (Street, Bldg, Unit) <span
+                                                                        class="text-red-500">*</span>
+                                                                </label>
+                                                                <input type="text" name="address_line"
+                                                                    id="address_line"
+                                                                    class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value="{{ old('address_line') }}" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="w-full lg:w-4/12 px-4">
+                                                            <div class="relative w-full mb-3">
+                                                                <label
+                                                                    class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                                                                    for="postal_code">
+                                                                    Postal Code <span class="text-red-500">*</span>
+                                                                </label>
+                                                                <input type="text" name="postal_code"
+                                                                    id="postal_code" required
+                                                                    class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value="{{ old('postal_code') }}" />
+                                                                <x-input-error class="mt-2" :messages="$errors->get('postal_code')" />
+                                                            </div>
+                                                        </div>
+                                                        {{-- Address Line and Postal --}}
+                                                    </div>
+                                                    {{-- ./ end flex-wrap --}}
+
+                                                    <hr class="mt-6 border-b-1 border-blueGray-300" />
+                                                    <div class="w-full px-4 my-5 flex justify-end">
                                                         <button
                                                             class="bg-green-500 text-white block active:bg-green-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md hover:bg-green-300 outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                                             type="submit">
-                                                            Submit
+                                                            Next <i class="fas fa-arrow-circle-right"></i>
                                                         </button>
                                                     </div>
                                                 </form>
                                             </div>
                                             {{-- /end Customer Details --}}
-
-
-
-
-
-
-                                            <div class="hidden" data-tab-content="true" id="tab-order-details">
-                                                <p>
-                                                    Completely synergize resource taxing relationships via
-                                                    premier niche markets. Professionally cultivate one-to-one
-                                                    customer service with robust ideas.
-                                                    <br />
-                                                    <br />
-                                                    Dynamically innovate resource-leveling customer service for
-                                                    state of the art customer service.
-                                                </p>
-                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -358,15 +408,50 @@
 
         $("#country").change(function() {
             let countryCode = $(this).find('option:selected').data('code');
+            $('#country-offset').addClass('hidden')
 
             if (countryCode === 'US') {
                 $(`.us-address`).removeClass('hidden');
                 $(`.ph-address`).addClass('hidden');
+                $("#state, #city").select2()
+                $('#state, #city').attr('required', true);
+                $('#barangay').removeAttr('required', true)
             } else {
                 $(`.ph-address`).removeClass('hidden');
                 $(`.us-address`).addClass('hidden');
+                $('#state, #city').removeAttr('required', true);
+
+                $('#barangay').attr('required', true)
+                $('#barangay').select2({
+                    placeholder: "Enter Municipality, Barangay (ex. Camarines Sur, Bato, Agos)",
+                    minimumInputLength: 5,
+                    allowclear: true,
+                    ajax: {
+                        url: '{{ route('ph.fetch.search_psgc', [], false) }}',
+                        type: "POST",
+                        headers: {
+                            'X-CSRF-TOKEN': app.data.csrf
+                        },
+                        dataType: "json",
+                        delay: 250,
+                        data: function(params) {
+                            return {
+                                term: params.term // search term
+                            };
+                        },
+                        processResults: function(response) {
+                            return {
+                                results: response.data
+                            };
+                        }
+                    }
+                });
             }
         })
+
+       $(`a[data-tab-toggle="tab-order-details"]`).click(function(e) {
+        e.preventDefault()
+       })
     })
 </script>
 

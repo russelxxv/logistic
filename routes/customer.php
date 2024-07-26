@@ -8,4 +8,4 @@ Route::middleware(['unknown_client', 'guest'])->prefix('/customer')->controller(
     Route::post('store', 'store')->name('store');
 });
 
-Route::get('/cus', [CustomerController::class, 'customer']);
+// Route::get('/cus', [CustomerController::class, 'customer']);

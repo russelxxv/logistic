@@ -9,3 +9,5 @@ Route::middleware(['enrolled.customer'])->prefix('/order-return')->controller(Or
     Route::get('created', 'created')->name('created');
     Route::get('close', 'closeSession')->name('close');
 });
+
+// Route::get('/order', [OrderReturnController::class, 'order']);
