@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\VerifyCustomerOtpRule;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Session;
 
 class VerifyCustomerRequest extends FormRequest
 {
@@ -24,6 +26,7 @@ class VerifyCustomerRequest extends FormRequest
         $routeName = $this->route()->getName();
         return match ($routeName) {
             'verify.customer-email' => $this->verifyCustomerEmailRules(),
+            'verify.check-otp' => $this->verifyCustomerOtp(),
             default => [],
         };
     }
@@ -32,6 +35,13 @@ class VerifyCustomerRequest extends FormRequest
     {
         return [
             'email' => ['required', 'email']
+        ];
+    }
+
+    private function verifyCustomerOtp(): array
+    {
+        return [
+            'otp' => ['required', new VerifyCustomerOtpRule]
         ];
     }
 }

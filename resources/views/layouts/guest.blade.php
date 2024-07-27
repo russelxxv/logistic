@@ -32,4 +32,8 @@
         </section>
     </main>
 </body>
+
+<script src="{{ asset('assets/js/jquery.min.js') }}"></script>
+<script src="{{ asset('assets/js/mask.js') }}"></script>
+@stack('script')
 </html>

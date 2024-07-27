@@ -22,7 +22,6 @@ class CustomerController extends Controller
         //     'states' => UsState::orderBy('name', 'asc')->get(),
         //     'regions' => PhRegion::orderBy('name', 'asc')->get(),
         // ]);
-
         return view('customer.index', [
             'countries' => Country::all(),
             'states' => UsState::orderBy('name', 'asc')->get(),

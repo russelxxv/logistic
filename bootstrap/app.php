@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Middleware\EnrolledCustomer;
+use App\Http\Middleware\EnsureCustomerIsVerified;
 use App\Http\Middleware\UnknownClient;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
@@ -17,6 +18,7 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->alias([
             'enrolled.customer' => EnrolledCustomer::class,
             'unknown_client' => UnknownClient::class,
+            'verify.otp' => EnsureCustomerIsVerified::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {

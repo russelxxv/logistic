@@ -111,5 +111,22 @@ return [
     */
 
     'password_timeout' => env('AUTH_PASSWORD_TIMEOUT', 10800),
+    
+    /*
+    |--------------------------------------------------------------------------
+    | Email verification and Account verification expiration
+    |--------------------------------------------------------------------------
+    |
+    | Defined here are the expiration (in minutes) of the email and
+    | account verification notifications
+    |
+    */
+
+   'verification' => [
+       'expiration' => [
+           'email' => env('VERIFY_EMAIL_EXPIRATION_MINUTES', 60),
+           'account' => env('VERIFY_ACCOUNT_EXPIRATION_MINUTES', 10080),
+       ],
+   ],
 
 ];

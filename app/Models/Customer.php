@@ -8,10 +8,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Notifications\Notifiable;
 
 class Customer extends Model
 {
     use HasFactory;
+    use Notifiable;
 
     protected $fillable = [
         'first_name',
@@ -53,5 +55,10 @@ class Customer extends Model
         return Attribute::make(function() {
             return ucwords($this->last_name .", ". $this->first_name);
         });
+    }
+
+    public function routeNotificationForMail($notification)
+    {
+        return $this->email;
     }
 }

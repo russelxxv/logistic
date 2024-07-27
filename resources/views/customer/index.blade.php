@@ -156,9 +156,9 @@
                                                                     Email address <span class="text-red-500">*</span>
                                                                 </label>
                                                                 <input type="email" required
-                                                                    class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                                                                    value="{{ old('email') }}" name="email"
-                                                                    id="email" />
+                                                                    class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-gray-200 rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                                                                    value="{{ session('customer_email') }}" name="email"
+                                                                    id="email" readonly/>
                                                                 <x-input-error class="mt-2" :messages="$errors->get('email')" />
                                                             </div>
                                                         </div>
