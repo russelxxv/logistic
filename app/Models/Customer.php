@@ -30,7 +30,7 @@ class Customer extends Model
     protected $with = ['address'];
 
     // custom attribute when fetching
-    protected $appends = ['full_name', 'addressCityStateCountry'];
+    protected $appends = ['full_name'];
 
     /**
      * A Customer may have multiple address
@@ -52,20 +52,6 @@ class Customer extends Model
     {
         return Attribute::make(function() {
             return ucwords($this->last_name .", ". $this->first_name);
-        });
-    }
-
-    /**
-     * Attribute Address for Listview displaying only
-     */
-    public function addressCityStateCountry(): Attribute
-    {
-        return Attribute::make(function() {
-            $country = $this->address->country->name ?? '';
-            $city = $this->address->city->name ?? '';
-            $state = $this->address->state->name ?? '';
-
-            return "$state, $city, $country";
         });
     }
 }

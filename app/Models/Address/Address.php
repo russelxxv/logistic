@@ -9,6 +9,7 @@ use App\Models\Address\Ph\PhRegion;
 use App\Models\Address\Us\UsCity;
 use App\Models\Address\Us\UsState;
 use App\Models\Customer;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -34,6 +35,9 @@ class Address extends Model
      * The relationships to eager-load
      */
     protected $with = ['state', 'country'];
+    
+
+    protected $appends = ['phHierarcyName', 'addressConventionName'];
 
     /**
      * Address is belongs to a customer
@@ -97,5 +101,43 @@ class Address extends Model
     public function country(): BelongsTo
     {
         return $this->belongsTo(Country::class);
+    }
+
+
+    public function phHierarcyName(): Attribute
+    {
+        if ($this->country->code === 'US') return null;
+
+        return Attribute::make(function() {
+            $query = PhBarangay::query();
+            $query->select('ph_barangays.id', 'ph_barangays.name AS barangay', 'ph_cities.name AS city', 'ph_municipalities.name AS municipality', 'ph_provinces.name AS province');
+            $query->leftJoin('ph_cities', 'ph_barangays.city_municipality_id', '=', 'ph_cities.id');
+            $query->leftJoin('ph_municipalities', 'ph_barangays.city_municipality_id', '=', 'ph_municipalities.id');
+            $query->leftJoin('ph_provinces', 'ph_barangays.province_id', '=', 'ph_provinces.id');
+            $query->where('ph_barangays.id', $this->barangay_id);
+            
+            $q = $query->get()->first();
+
+            return trim("{$q->barangay} {$q->city} {$q->municipality} {$q->province}");
+        });
+    }
+
+    /**
+     * Attribute Address for Listview displaying only
+     */
+    public function addressConventionName(): Attribute
+    {
+        return Attribute::make(function() {
+
+            $country = $this->country->name ?? '';
+            if ($this->country->code === 'US') {
+                $city = $this->city->name ?? '';
+                $state = $this->state->name ?? '';
+    
+                return "$state, $city, $country";
+            }
+
+            return $this->phHierarcyName .', '. $country;
+        });
     }
 }

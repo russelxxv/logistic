@@ -16,7 +16,6 @@ return new class extends Migration
             $table->string('item_number');
             $table->unsignedBigInteger('order_return_id');
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 

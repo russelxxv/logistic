@@ -57,8 +57,9 @@ class ManageCustomerRequest extends FormRequest
     {
         return [
             'address_line' => ['required', 'string'],
-            'city' => ['required', 'exists:cities,id'],
-            'state' => ['required', 'exists:states,id'],
+            'city' => ['nullable', 'exists:cities,id'],
+            'state' => ['nullable', 'exists:states,id'],
+            'barangay_id' => ['nullable', 'exists:ph_barangays,id'],
             'postal_code' => ['required', new DbVarcharMaxLength()],
             'country' => ['required', 'exists:countries,id']
         ];

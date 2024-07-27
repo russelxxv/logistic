@@ -22,6 +22,13 @@
     <link rel="stylesheet" href="{{ asset('assets/styles/tailwind.css') }}" />
     <link rel="stylesheet" href="https://cdn.datatables.net/2.0.8/css/dataTables.dataTables.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link href="{{ asset('assets/css/select2.min.css') }}" rel="stylesheet" />
+    <style>
+        .iti.iti--allow-dropdown {
+            width: 100% !important;
+        }
+    </style>
+    @stack('style')
 </head>
 
 <body class="text-blueGray-700 antialiased">
@@ -185,6 +192,7 @@
 <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
 <script src="https://cdn.datatables.net/2.0.8/js/dataTables.min.js"></script>
 <script src="{{ asset('assets/js/mask.js') }}"></script>
+<script src="{{ asset('assets/js/select2.full.min.js') }}"></script>
 <script type="text/javascript">
     var app = app || {};
     /* Make dynamic date appear */

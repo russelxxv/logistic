@@ -34,10 +34,11 @@ class ManageCustomerController extends Controller
 
         $address = $customer->address()->update([
             'address_line' => $validated['address_line'],
-            'city_id' => $validated['city'],
-            'state_id' => $validated['state'],
+            'city_id' => $validated['city'] ?? null,
+            'state_id' => $validated['state'] ?? null,
             'country_id' => $validated['country'],
             'postal_code' => $validated['postal_code'],
+            'barangay_id' => $validated['barangay_id'] ?? null,
         ]);
         
         Session::flash('customer_address.updated', 'Address updated');

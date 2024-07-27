@@ -70,13 +70,17 @@
                                 <tr>
                                     <td
                                         class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4 text-right">
-                                        <a href="{{ route('manage-order-return.edit', ['id' => $order->id], false) }}" class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700 hover:text-green-500">
-                                            <i class="fa fa-pen-square text-green-400 hover:text-green-600"></i> <span class="text-xs">EDIT</span>
+                                        <a title="Edit" href="{{ route('manage-order-return.edit', ['id' => $order->id], false) }}" class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700 hover:text-green-500">
+                                            <i class="fa fa-pen hover:text-green-600"></i>
                                         </a>
                                     </td>
                                     <td
                                         class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4">
-                                        <i class="fas fa-circle text-emerald-500 mr-2"></i>
+                                        @if ($order->status === 'New')
+                                            <i class="fas fa-circle text-amber-400 mr-2"></i>
+                                        @else
+                                            <i class="fa fa-check-circle text-emerald-500 mr-2"></i>
+                                        @endif
                                         {{ $order->status }}
                                     </td>
                                     <td
@@ -101,7 +105,7 @@
                                     </td>
                                     <td
                                         class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4">
-                                        {{ $order->customer->addressCityStateCountry }}
+                                        {{ $order->customer->address->addressConventionName }}
                                     </td>
                                     <td
                                         class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4">

@@ -70,7 +70,6 @@ class OrderReturn extends Model
 
     public function routeNotificationForMail($notification)
     {
-        // dd($notification);
         return $this->customer->email;
     }
 }

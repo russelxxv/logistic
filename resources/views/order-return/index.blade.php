@@ -166,7 +166,7 @@
                                                                 pattern="[0-9]*" />
                                                         </div>
                                                         <div class="w-full lg:w-6/12 px-4 mb-2 div-button-item">
-                                                            <div class="mt-7 -ml-2" id="div-add-item">
+                                                            <div class="mt-7 -ml-2">
                                                                 <button type="button" id="btn-add-item"
                                                                     class="bg-green-500 text-white block active:bg-green-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md hover:bg-green-300 outline-none focus:outline-none mr-1 ease-linear transition-all duration-150">
                                                                     <i class="fa fa-plus"></i> Add item
@@ -280,7 +280,6 @@
         $("#btn-add-item").click(function() {
             const itemOrders = $(".item-container");
             const itemOrderLength = itemOrders.length
-            let targetElementAfter = $("#form-order-return").find(`.div-button-item`)
             const idRandom = Math.floor((Math.random() * 100) + 1)
 
             let itemContainer = `
@@ -305,10 +304,6 @@
                 }
             });
         });
-
-        function deleteItem(el) {
-            $($(el).parents('.item-container')).remove()
-        }
 
         $(document).on('click', '.delete-order-item', function() {
             $(this).parents('.item-container').remove()

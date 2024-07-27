@@ -59,11 +59,34 @@ class ManageOrderReturnController extends Controller
         ]);
     }
 
-    public function update(ManageOrderReturnRequest $request)
+    public function update(ManageOrderReturnRequest $request, $id)
     {
         $validated = $request->validated();
+        $orderReturn = OrderReturn::findOrFail($id);
 
-        dd($validated);
+        $orderReturn->update([
+            'order_number' => $validated['order_number'],
+            'order_return_reason_id' => $validated['return_reason_id'],
+            'details' => $validated['details'],
+        ]);
+
+        // Delete the existing record
+        $orderReturn->returnItems()->delete();
+        $orderReturn->productCategories()->delete();
+
+        // Then create a new set of record
+        foreach($validated['item_number'] as $item) {
+            $orderReturn->returnItems()->create(['item_number' => $item]);
+        }
+
+        foreach($validated['product_category'] as $category) {
+            $orderReturn->productCategories()->create(['product_category_id' => $category]);
+        }
+
+        // dd($validated);
+
+        Session::flash('order_return.updated', 'Order Details Updated');
+        return redirect()->back();
     }
 
     public function receivedOrderReturn($id)

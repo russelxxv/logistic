@@ -44,19 +44,20 @@ class ExportOrderReturnList extends Controller
             $sheet->setCellValue('D' . $row, $order->customer->retailer_name);
             $sheet->setCellValue('E' . $row, $order->customer->phone);
             $sheet->setCellValue('F' . $row, $order->customer->email);
-            $sheet->setCellValue('G' . $row, $order->customer->addressCityStateCountry);
+            $sheet->setCellValue('G' . $row, $order->customer->address->addressConventionName);
             $sheet->setCellValue('H' . $row, $order->reason->reason);
             $sheet->setCellValue('I' . $row, $order->created_at);
             $row++;
         }
 
         $writer = new Xlsx($spreadsheet);
-        $fileName = "Order Return is Life.xlsx";
+        $fileName = date('Y-m-d') ."_Order_Return_Exported.xlsx";
         header("Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
         header("Content-Disposition: attachment;filename=\"$fileName\"");
         $writer->save("php://output");
         
-        Session::flash('export.done', 'exprt is done');
+        // Session::flash('export.done', 'exprt is done');
+        exit();
         return redirect()->back();
     }
 }
