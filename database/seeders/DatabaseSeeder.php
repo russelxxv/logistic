@@ -22,7 +22,10 @@ class DatabaseSeeder extends Seeder
             ReturnReasonSeeder::class,
             // OrderReturnSeeder::class,
             PhoneCountryCodeSeeder::class,
+            /**
+             * Commented only US address prior
             Psgc::class,
+             */
             USAddress::class,
         ]);
 

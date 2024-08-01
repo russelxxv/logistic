@@ -17,10 +17,10 @@ class CountriesSeeder extends Seeder
                 'code' => 'US',
                 'name' => 'United States',
             ],
-            [
-                'code' => 'PH',
-                'name' => 'Philippines',
-            ]
+            // [
+            //     'code' => 'PH',
+            //     'name' => 'Philippines',
+            // ]
         ]);
     }
 }
