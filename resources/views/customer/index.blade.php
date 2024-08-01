@@ -223,10 +223,10 @@
                                                                 <x-input-error class="mt-2" :messages="$errors->get('country')" />
                                                             </div>
                                                         </div>
-                                                        <div class="w-full lg:w-8/12 px-4" id="country-offset"></div>
+                                                        {{-- <div class="w-full lg:w-8/12 px-4" id="country-offset"></div> --}}
 
                                                         {{-- State & City --}}
-                                                        <div class="w-full lg:w-4/12 px-4 us-address hidden">
+                                                        <div class="w-full lg:w-4/12 px-4 us-address">
                                                             <div class="relative w-full mb-3">
                                                                 <label
                                                                     class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
@@ -244,7 +244,7 @@
                                                                 <x-input-error class="mt-2" :messages="$errors->get('state_id')" />
                                                             </div>
                                                         </div>
-                                                        <div class="w-full lg:w-4/12 px-4 us-address hidden">
+                                                        <div class="w-full lg:w-4/12 px-4 us-address">
                                                             <div class="relative w-full mb-3">
                                                                 <label
                                                                     class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
@@ -369,7 +369,7 @@
         const phoneInput = document.querySelector("#phone");
         window.intlTelInput(phoneInput, {
             utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@23.3.0/build/js/utils.js",
-            onlyCountries: ['us', 'ph'],
+            onlyCountries: ['us'],
             separateDialCode: true,
             formatOnDisplay: false,
             nationalMode: false,
@@ -406,6 +406,8 @@
             })
         });
 
+
+        $("#state, #city").select2()
         $("#country").change(function() {
             let countryCode = $(this).find('option:selected').data('code');
             $('#country-offset').addClass('hidden')
