@@ -9,6 +9,7 @@
     <meta name="theme-color" content="#000000" />
 
     <title>{{ config('app.name', 'OORS') }}</title>
+    <link rel="shortcut icon" href="{{ asset('assets/img/sublogo-mark.png') }}">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">

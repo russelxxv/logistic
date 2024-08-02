@@ -216,7 +216,7 @@
                             </div>
 
                             {{-- State & City --}}
-                            <div class="w-full lg:w-3/12 px-4 us-address hidden">
+                            <div class="w-full lg:w-3/12 px-4 us-address">
                                 <div class="relative w-full mb-3">
                                     <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                                         for="state">
@@ -234,7 +234,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="w-full lg:w-3/12 px-4 us-address hidden">
+                            <div class="w-full lg:w-3/12 px-4 us-address">
                                 <div class="relative w-full mb-3">
                                     <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                                         for="city">

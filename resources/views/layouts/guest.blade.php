@@ -8,6 +8,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>Login {{ config('app.name', 'OORS') }}</title>
+    <link rel="shortcut icon" href="{{ asset('assets/img/sublogo-mark.png') }}">
 
     <!-- Scripts vite -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
