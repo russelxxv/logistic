@@ -12,10 +12,11 @@
                         SIGN IN
                     </h6>
                 </div>
-                <div class="btn-wrapper text-center">
-                    <h2 class="text-2xl leading-normal mt-0 mb-2 text-blueGray-600 font-bold">
+                <div class="text-center">
+                    <img src="{{ asset('assets/img/bz-logo.png') }}" class="object-cover h-28 w-96">
+                    {{-- <h2 class="text-2xl leading-normal mt-0 mb-2 text-blueGray-600 font-bold">
                         {{ config('app.name') }}
-                      </h2>
+                      </h2> --}}
                 </div>
                 <hr class="mt-6 border-b-1 border-blueGray-300" />
             </div>
